@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perancangan Basis Data - Sistem Presensi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 40px 20px;
+            color: #000;
+            line-height: 1.5;
+            background: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            font-size: 16pt;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 14pt;
+            margin-top: 30px;
+        }
+        h3 {
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .intro-text {
+            text-align: justify;
+            text-indent: 40px;
+            margin-bottom: 20px;
+            font-size: 12pt;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
+            background-color: #fff;
+        }
+        .btn-print {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .btn-print:hover {
+            background: #eee;
+        }
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.print()" class="btn-print no-print">Cetak Dokumen</button>
+
+    <div class="container">
+        <h1>Perancangan Basis Data</h1>
+        
+        <p class="intro-text">Perancangan basis data dilakukan untuk mendukung kebutuhan sistem dalam mencatat dan mengelola data absensi harian, manajemen siswa, penugasan guru, serta laporan rekapitulasi pada Sistem Informasi Presensi Sekolah. Basis data dirancang menggunakan MySQL, dan mencakup entitas utama seperti users, siswa, kelas, presensi, dan entitas pendukung lainnya.</p>
+
+        <h2>1. Struktur Tabel</h2>
+        <p class="intro-text">Berikut adalah rincian spesifikasi dari tabel-tabel utama yang digunakan di dalam sistem beserta kolom dan keterangan tipe datanya.</p>
+        
+        <h3>1. Tabel <code>user</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>VARCHAR</td>
+                    <td>Nama lengkap pengguna</td>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>VARCHAR</td>
+                    <td>Username untuk login pengguna</td>
+                </tr>
+                <tr>
+                    <td>role</td>
+                    <td>ENUM</td>
+                    <td>Peran pengguna (Admin, Wali Kelas, Guru Mapel)</td>
+                </tr>
+                <tr>
+                    <td>avatar</td>
+                    <td>VARCHAR</td>
+                    <td>Foto profil pengguna</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2. Tabel <code>siswa</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>nis</td>
+                    <td>VARCHAR</td>
+                    <td>Nomor Induk Siswa</td>
+                </tr>
+                <tr>
+                    <td>nama_siswa</td>
+                    <td>VARCHAR</td>
+                    <td>Nama lengkap siswa</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>VARCHAR</td>
+                    <td>Status keaktifan siswa</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3. Tabel <code>kelas</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>nama_kelas</td>
+                    <td>VARCHAR</td>
+                    <td>Nama rombongan belajar/kelas</td>
+                </tr>
+                <tr>
+                    <td>semester</td>
+                    <td>VARCHAR</td>
+                    <td>Periode semester berjalan</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4. Tabel <code>presensi</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>tanggal</td>
+                    <td>DATE</td>
+                    <td>Tanggal pelaksanaan presensi</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>VARCHAR</td>
+                    <td>Status kehadiran (Hadir, Sakit, Izin, Alpa)</td>
+                </tr>
+                <tr>
+                    <td>nama_mapel</td>
+                    <td>VARCHAR</td>
+                    <td>Mata pelajaran saat presensi dilakukan</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>5. Tabel <code>pengajuan_presensi</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>tipe</td>
+                    <td>VARCHAR</td>
+                    <td>Tipe pengajuan laporan/rekap</td>
+                </tr>
+                <tr>
+                    <td>bulan</td>
+                    <td>VARCHAR</td>
+                    <td>Bulan pengajuan (contoh: Januari)</td>
+                </tr>
+                <tr>
+                    <td>tahun</td>
+                    <td>VARCHAR</td>
+                    <td>Tahun pengajuan (contoh: 2024)</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>VARCHAR</td>
+                    <td>Status validasi persetujuan</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>6. Tabel <code>tugas_pengganti</code></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>INT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>tanggal</td>
+                    <td>DATE</td>
+                    <td>Tanggal penugasan</td>
+                </tr>
+                <tr>
+                    <td>alasan</td>
+                    <td>TEXT</td>
+                    <td>Alasan ketidakhadiran guru</td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>VARCHAR</td>
+                    <td>Status pelaksanaan tugas pengganti</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skenario Pengujian Sistem PPDB (Black Box Testing)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f1f4f6;
+        }
+        .status-col {
+            width: 80px;
+            text-align: center;
+        }
+        .status-box {
+            display: inline-block;
+            width: 100%;
+            height: 25px;
+            border: 1px dashed #ccc;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dokumen Pengujian Sistem (Black Box Testing) - PPDB</h1>
+
+        <h2>1. Skenario Pengujian Aktor: Calon Siswa</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th width="5%">No</th>
+                    <th width="20%">Modul / Fitur</th>
+                    <th width="30%">Skenario Pengujian</th>
+                    <th width="20%">Data Uji (Test Data)</th>
+                    <th width="25%">Hasil yang Diharapkan (Expected Result)</th>
+                    <th class="status-col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Registrasi Akun</strong></td>
+                    <td>Memasukkan data lengkap dan valid pada form registrasi</td>
+                    <td>Nama: "Budi", NISN: "1234567890", Tanggal Lahir: "2005-08-17"</td>
+                    <td>Sistem menyimpan data dan akun berhasil dibuat.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td>Memasukkan NISN yang sudah terdaftar</td>
+                    <td>NISN: [NISN yang sudah ada di database]</td>
+                    <td>Sistem menolak pendaftaran dan menampilkan pesan error "NISN sudah digunakan".</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Login Calon Siswa</strong></td>
+                    <td>Login dengan kredensial yang valid (Sesuai penyesuaian baru)</td>
+                    <td><strong>Username (NISN)</strong>: "1234567890"<br><strong>Password (Tanggal Lahir)</strong>: "2005-08-17" (sesuaikan format YYYY-MM-DD atau DD-MM-YYYY)</td>
+                    <td>Berhasil masuk ke halaman Dashboard Calon Siswa.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td>Login dengan password (tanggal lahir) yang salah</td>
+                    <td>Username (NISN): "1234567890"<br>Password: "2005-01-01" (salah)</td>
+                    <td>Sistem menolak akses dan menampilkan pesan error "Kredensial tidak valid" atau "NISN / Password salah".</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Pengisian Formulir</strong></td>
+                    <td>Menyimpan data formulir pendaftaran dengan lengkap</td>
+                    <td>Alamat, Nama Orang Tua, Nilai Rapor diisi lengkap</td>
+                    <td>Data tersimpan dengan sukses ke database, progress bar pendaftaran bertambah.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Unggah Berkas</strong></td>
+                    <td>Mengunggah dokumen (KK/Ijazah) dengan format dan ukuran valid</td>
+                    <td>File format .pdf atau .jpg, ukuran &lt; 2MB</td>
+                    <td>Dokumen berhasil diunggah dan preview dokumen muncul.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>Cetak Bukti</strong></td>
+                    <td>Mengklik tombol Cetak/Download Kartu Bukti Pendaftaran</td>
+                    <td>Status pendaftaran = "Selesai"</td>
+                    <td>Sistem meng-generate file PDF kartu bukti pendaftaran sesuai data diri siswa.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>Lihat Pengumuman</strong></td>
+                    <td>Mengakses menu Pengumuman Hasil Seleksi</td>
+                    <td>Akun siswa yang sudah diverifikasi</td>
+                    <td>Sistem menampilkan status "Lulus" atau "Tidak Lulus".</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Skenario Pengujian Aktor: Admin</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th width="5%">No</th>
+                    <th width="20%">Modul / Fitur</th>
+                    <th width="30%">Skenario Pengujian</th>
+                    <th width="20%">Data Uji (Test Data)</th>
+                    <th width="25%">Hasil yang Diharapkan (Expected Result)</th>
+                    <th class="status-col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Login Admin</strong></td>
+                    <td>Login dengan akun Admin yang valid</td>
+                    <td>Username & Password admin benar</td>
+                    <td>Berhasil masuk ke halaman Dashboard Admin.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Pengaturan PPDB</strong></td>
+                    <td>Mengubah jadwal buka/tutup pendaftaran PPDB</td>
+                    <td>Tanggal mulai & selesai diinput valid</td>
+                    <td>Sistem menyimpan perubahan. Form pendaftaran publik menyesuaikan jadwal.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Verifikasi Berkas</strong></td>
+                    <td>Mengubah status verifikasi pendaftar menjadi "Valid"</td>
+                    <td>ID Siswa dengan berkas lengkap dipilih</td>
+                    <td>Status pendaftar berubah menjadi valid/diterima.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td>Menolak verifikasi dokumen dengan alasan</td>
+                    <td>Pilih siswa, Alasan: "KK Buram"</td>
+                    <td>Status berubah menjadi "Revisi" dan alasan muncul di akun siswa.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Manajemen Siswa</strong></td>
+                    <td>Menambah calon siswa baru secara manual</td>
+                    <td>Input form: NISN, Nama Lengkap, Jenis Kelamin, dan Kelas (7/8/9) diisi dengan valid</td>
+                    <td>Data calon siswa berhasil tersimpan dan status akun otomatis "aktif".</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Pengumuman</strong></td>
+                    <td>Mempublikasikan hasil seleksi</td>
+                    <td>Tombol publish ditekan</td>
+                    <td>Hasil kelulusan dapat dilihat oleh semua calon siswa.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Skenario Pengujian Aktor: Bendahara</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th width="5%">No</th>
+                    <th width="20%">Modul / Fitur</th>
+                    <th width="30%">Skenario Pengujian</th>
+                    <th width="20%">Data Uji (Test Data)</th>
+                    <th width="25%">Hasil yang Diharapkan (Expected Result)</th>
+                    <th class="status-col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Login Bendahara</strong></td>
+                    <td>Login dengan akun Role Bendahara</td>
+                    <td>Username & Password bendahara benar</td>
+                    <td>Berhasil masuk ke halaman Dashboard Bendahara.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Pengaturan Biaya</strong></td>
+                    <td>Mengubah nominal rincian biaya (Infak, LK, Seragam)</td>
+                    <td>Input field biaya dengan angka (misal: 1000000) dan simpan</td>
+                    <td>Pengaturan berhasil diperbarui dan target tagihan siswa otomatis menyesuaikan.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Pencatatan Pembayaran</strong></td>
+                    <td>Mencatat/menginput cicilan pembayaran siswa yang valid</td>
+                    <td>Pilih Jenis (Infak/LK/Seragam), Input Nominal (tidak melebihi target), Upload Bukti Gambar</td>
+                    <td>Riwayat pembayaran berhasil ditambahkan ke akun siswa, sisa tagihan berkurang.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td>Mencatat nominal pembayaran melebihi sisa tagihan/target</td>
+                    <td>Input Nominal: Rp 500.000 (Padahal sisa tagihan hanya Rp 100.000)</td>
+                    <td>Sistem menolak dan menampilkan pesan error "Nominal melebihi sisa target...".</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Laporan Keuangan</strong></td>
+                    <td>Mencetak Laporan Rekap Pembayaran / Siswa Belum Lunas (PDF)</td>
+                    <td>Pilih filter kelas & klik tombol Cetak/Export PDF</td>
+                    <td>Sistem meng-generate file PDF rekap keuangan yang akurat sesuai filter.</td>
+                    <td><span class="status-box"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

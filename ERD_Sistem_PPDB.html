@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Relationship Diagram (ERD) - Sistem PPDB</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 40px 20px;
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 50px 60px;
+            border: 1px solid #e0e6ed;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a202c;
+            border-bottom: 3px solid #2d3748;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            letter-spacing: -0.5px;
+        }
+        h2 {
+            color: #2d3748;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            font-size: 1.5em;
+        }
+        .intro-text {
+            text-align: justify;
+            text-indent: 40px;
+            margin-bottom: 25px;
+            color: #4a5568;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .btn-print {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 12px 24px;
+            background-color: #ffffff;
+            color: #1a202c;
+            border: 2px solid #1a202c;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-print:hover {
+            background-color: #1a202c;
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        code {
+            background-color: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 0.9em;
+            color: #e53e3e;
+        }
+        ul.explanation-list li {
+            margin-bottom: 12px;
+            text-align: justify;
+            color: #4a5568;
+        }
+        
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .container { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            .no-print { display: none; }
+            h1, h2 { color: #000; border-color: #000; }
+            code { color: #000; border: 1px solid #ccc; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryTextColor: '#000000',
+                primaryBorderColor: '#000000',
+                lineColor: '#000000',
+                secondaryColor: '#ffffff',
+                tertiaryColor: '#ffffff',
+                fontFamily: 'Inter, Arial, sans-serif',
+                fontSize: '13px'
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <button onclick="window.print()" class="btn-print no-print">🖨️ Cetak ERD</button>
+
+    <div class="container">
+        <h1>Entity Relationship Diagram (ERD)</h1>
+        
+        <p class="intro-text">Entity Relationship Diagram (ERD) di atas menggambarkan struktur data konseptual dari sistem PPDB yang dibangun, menggunakan Notasi Klasik (Chen). Diagram ini memetakan 6 entitas utama beserta atribut dan hubungan (kardinalitas) antar entitasnya.</p>
+
+        <!-- BAGIAN ERD -->
+        <div class="mermaid">
+flowchart TD
+    %% Entitas
+    PENGGUNA[PENGGUNA]
+    SISWA[SISWA]
+    PEMBAYARAN[PEMBAYARAN]
+    RINCIAN_BIAYA[RINCIAN_BIAYA]
+    KONTEN[KONTEN]
+    PENGATURAN[PENGATURAN]
+
+    %% Relasi
+    R_MEMILIKI{memiliki}
+    R_MELAKUKAN{melakukan}
+
+    PENGGUNA ---|1| R_MEMILIKI ---|M| SISWA
+    SISWA ---|1| R_MELAKUKAN ---|M| PEMBAYARAN
+
+    %% Menyelaraskan entitas yang tidak berelasi agar tersusun menurun secara vertikal
+    PEMBAYARAN ~~~ RINCIAN_BIAYA
+    RINCIAN_BIAYA ~~~ KONTEN
+    KONTEN ~~~ PENGATURAN
+
+    %% Atribut Pengguna
+    u_id([id])
+    u_nama([nama])
+    u_email([email])
+    u_pass([password])
+    u_peran([peran])
+    u_google([google_id])
+
+    PENGGUNA --- u_id
+    PENGGUNA --- u_nama
+    PENGGUNA --- u_email
+    PENGGUNA --- u_pass
+    PENGGUNA --- u_peran
+    PENGGUNA --- u_google
+
+    %% Atribut Siswa
+    s_id([id])
+    s_uid([user_id])
+    s_nomor([nomor_pendaftaran])
+    s_nisn([nisn])
+    s_nama([nama_lengkap])
+    s_jk([jenis_kelamin])
+    s_tgl([tanggal_lahir])
+    s_jalur([jalur])
+    s_status([status])
+    s_kelas([kelas])
+
+    SISWA --- s_id
+    SISWA --- s_uid
+    SISWA --- s_nomor
+    SISWA --- s_nisn
+    SISWA --- s_nama
+    SISWA --- s_jk
+    SISWA --- s_tgl
+    SISWA --- s_jalur
+    SISWA --- s_status
+    SISWA --- s_kelas
+
+    %% Atribut Pembayaran
+    p_id([id])
+    p_sid([student_id])
+    p_metode([metode_pembayaran])
+    p_jumlah([jumlah_bayar])
+    p_bukti([bukti_transfer])
+    p_status([status])
+
+    PEMBAYARAN --- p_id
+    PEMBAYARAN --- p_sid
+    PEMBAYARAN --- p_metode
+    PEMBAYARAN --- p_jumlah
+    PEMBAYARAN --- p_bukti
+    PEMBAYARAN --- p_status
+
+    %% Atribut Rincian Biaya
+    pi_id([id])
+    pi_nama([nama_biaya])
+    pi_jumlah([jumlah])
+    pi_jalur([jalur])
+
+    RINCIAN_BIAYA --- pi_id
+    RINCIAN_BIAYA --- pi_nama
+    RINCIAN_BIAYA --- pi_jumlah
+    RINCIAN_BIAYA --- pi_jalur
+
+    %% Atribut Konten
+    c_id([id])
+    c_judul([judul])
+    c_tipe([tipe])
+    c_isi([isi_konten])
+
+    KONTEN --- c_id
+    KONTEN --- c_judul
+    KONTEN --- c_tipe
+    KONTEN --- c_isi
+
+    %% Atribut Pengaturan
+    set_id([id])
+    set_kunci([kunci])
+    set_nilai([nilai])
+
+    PENGATURAN --- set_id
+    PENGATURAN --- set_kunci
+    PENGATURAN --- set_nilai
+        </div>
+
+        <!-- BAGIAN PENJELASAN -->
+        <h2>a. Definisi Entitas dan Atribut</h2>
+        <p class="intro-text">Berikut adalah penjelasan entitas yang terlibat beserta atribut-atribut yang menyertainya (Atribut yang digarisbawahi merupakan Primary Key):</p>
+
+        <ul class="explanation-list">
+            <li><strong>1. PENGGUNA:</strong> Entitas yang mewakili pengguna sistem (seperti Admin, Bendahara, dan Calon Siswa). Atribut: <u>id</u>, nama, email, password, peran, google_id.</li>
+            <li><strong>2. SISWA:</strong> Entitas yang menyimpan data induk pendaftaran calon siswa. Atribut: <u>id</u>, user_id, nomor_pendaftaran, nisn, nama_lengkap, jenis_kelamin, tanggal_lahir, jalur, status, kelas.</li>
+            <li><strong>3. PEMBAYARAN:</strong> Entitas transaksi yang menyimpan riwayat pembayaran pendaftaran oleh siswa. Atribut: <u>id</u>, student_id, metode_pembayaran, jumlah_bayar, bukti_transfer, status.</li>
+            <li><strong>4. RINCIAN_BIAYA:</strong> Entitas master yang menyimpan referensi besaran biaya pendaftaran sesuai jalur. Atribut: <u>id</u>, nama_biaya, jumlah, jalur.</li>
+            <li><strong>5. KONTEN:</strong> Entitas yang menyimpan informasi seperti pengumuman dan berita publik pada sistem. Atribut: <u>id</u>, judul, tipe, isi_konten.</li>
+            <li><strong>6. PENGATURAN:</strong> Entitas untuk menyimpan opsi konfigurasi dinamis sistem (misalnya status buka/tutup pendaftaran). Atribut: <u>id</u>, kunci, nilai.</li>
+        </ul>
+
+    </div>
+</body>
+</html>

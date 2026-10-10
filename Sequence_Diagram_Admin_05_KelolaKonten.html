@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Diagram Admin - Kelola Konten</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; margin-top: 40px; background-color: #ffffff; }
+        .diagram-container { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Sequence Diagram: Admin (5. Kelola Konten CMS)</h2>
+    <div class="diagram-container">
+        <svg width="850" height="460" viewBox="0 0 850 460" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="black"/></marker></defs>
+
+            <rect x="60" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="33" font-size="14" font-weight="bold" text-anchor="middle">Admin</text>
+            <rect x="310" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="33" font-size="14" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="570" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="640" y="33" font-size="14" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="45" x2="130" y2="430" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="380" y1="45" x2="380" y2="430" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="640" y1="45" x2="640" y2="430" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <rect x="60" y="430" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="450" font-size="13" font-weight="bold" text-anchor="middle">Admin</text>
+            <rect x="310" y="430" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="450" font-size="13" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="570" y="430" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="640" y="450" font-size="13" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="80" x2="380" y2="80" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="255" y="73" font-size="12" text-anchor="middle">1. Akses menu kelola konten</text>
+
+            <line x1="380" y1="130" x2="640" y2="130" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="510" y="123" font-size="12" text-anchor="middle">2. Get daftar konten (berita/informasi)</text>
+
+            <line x1="640" y1="180" x2="380" y2="180" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="510" y="173" font-size="12" text-anchor="middle">3. Return data konten</text>
+
+            <line x1="380" y1="230" x2="130" y2="230" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="223" font-size="12" text-anchor="middle">4. Tampilkan list konten</text>
+
+            <line x1="130" y1="280" x2="380" y2="280" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="255" y="273" font-size="12" text-anchor="middle">5. Tambah/Edit konten & submit</text>
+
+            <line x1="380" y1="330" x2="640" y2="330" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="510" y="323" font-size="12" text-anchor="middle">6. Simpan / Update data konten</text>
+
+            <line x1="640" y1="380" x2="380" y2="380" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="510" y="373" font-size="12" text-anchor="middle">7. Konfirmasi berhasil</text>
+
+            <line x1="380" y1="410" x2="130" y2="410" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="403" font-size="12" text-anchor="middle">8. Notifikasi konten diperbarui</text>
+        </svg>
+    </div>
+</body>
+</html>
+

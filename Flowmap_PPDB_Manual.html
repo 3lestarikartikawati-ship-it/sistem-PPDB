@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowmap PPDB Manual (Swimlane Diagram)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f4f4; 
+            color: #000;
+            padding: 20px;
+        }
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        svg { display: block; margin: 0 auto; }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; }
+        }
+        .description-box {
+            margin-top: 40px;
+            padding: 30px;
+            background: #fdfdfd;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .description-box h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .description-box h3 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .description-box ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .description-box li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Flowmap PPDB (Sistem Manual)</h1>
+    
+    <svg width="900" height="1050" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"/>
+            </marker>
+        </defs>
+
+        <!-- Swimlane Backgrounds & Borders -->
+        <rect x="0" y="0" width="900" height="1050" fill="none" stroke="#000" stroke-width="2"/>
+        <line x1="300" y1="0" x2="300" y2="1050" stroke="#000" stroke-width="2"/>
+        <line x1="600" y1="0" x2="600" y2="1050" stroke="#000" stroke-width="2"/>
+        <line x1="0" y1="50" x2="900" y2="50" stroke="#000" stroke-width="2"/>
+
+        <!-- Column Headers -->
+        <rect x="0" y="0" width="300" height="50" fill="#e0e0e0"/>
+        <rect x="300" y="0" width="300" height="50" fill="#f0f0f0"/>
+        <rect x="600" y="0" width="300" height="50" fill="#e0e0e0"/>
+        
+        <text x="150" y="32" text-anchor="middle" font-size="16" font-weight="bold">CALON SISWA / ORTU</text>
+        <text x="450" y="32" text-anchor="middle" font-size="16" font-weight="bold">PANITIA PPDB</text>
+        <text x="750" y="32" text-anchor="middle" font-size="16" font-weight="bold">BENDAHARA</text>
+
+        <!-- ============================================== -->
+        <!-- ROW 1: START & Ambil Formulir                  -->
+        <!-- ============================================== -->
+        <ellipse cx="150" cy="90" rx="40" ry="20" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="95" text-anchor="middle" font-size="12" font-weight="bold">START</text>
+        
+        <line x1="150" y1="110" x2="150" y2="140" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- Node 1: Datang & Ambil Formulir -->
+        <rect x="40" y="140" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="160" text-anchor="middle" font-size="12" font-weight="bold">Datang ke Sekolah &amp;</text>
+        <text x="150" y="175" text-anchor="middle" font-size="12" font-weight="bold">Mengambil Formulir</text>
+
+        <line x1="150" y1="190" x2="150" y2="230" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 2: Isi Formulir & Serahkan                 -->
+        <!-- ============================================== -->
+        <!-- Node 2: Mengisi Formulir & Berkas -->
+        <rect x="40" y="230" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="250" text-anchor="middle" font-size="12" font-weight="bold">Mengisi Formulir &amp;</text>
+        <text x="150" y="265" text-anchor="middle" font-size="11">Melengkapi Berkas (FC KK, dll)</text>
+
+        <line x1="150" y1="280" x2="150" y2="320" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- Node 3: Serahkan Berkas -->
+        <rect x="40" y="320" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="340" text-anchor="middle" font-size="12" font-weight="bold">Menyerahkan Formulir</text>
+        <text x="150" y="355" text-anchor="middle" font-size="12" font-weight="bold">&amp; Berkas ke Panitia</text>
+
+        <line x1="260" y1="345" x2="340" y2="345" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 3: Panitia Verifikasi                      -->
+        <!-- ============================================== -->
+        <!-- Node 4: Decision Verifikasi (Panitia) -->
+        <polygon points="450,305 520,345 450,385 380,345" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="450" y="341" text-anchor="middle" font-size="12" font-weight="bold">Cek &amp;</text>
+        <text x="450" y="355" text-anchor="middle" font-size="12" font-weight="bold">Verifikasi</text>
+
+        <!-- Kurang Branch (Up and Left) -->
+        <line x1="450" y1="305" x2="450" y2="255" stroke="#000" stroke-width="2"/>
+        <line x1="450" y1="255" x2="260" y2="255" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="410" y="295" text-anchor="middle" font-size="11" font-weight="bold">Tidak Lengkap / Salah</text>
+
+        <!-- Lengkap Branch (Down) -->
+        <line x1="450" y1="385" x2="450" y2="430" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="480" y="415" text-anchor="start" font-size="11" font-weight="bold">Lengkap</text>
+
+        <!-- ============================================== -->
+        <!-- ROW 4: Panitia Merekap Data                    -->
+        <!-- ============================================== -->
+        <!-- Node 5: Panitia Rekap Data -->
+        <rect x="340" y="430" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="450" y="450" text-anchor="middle" font-size="12" font-weight="bold">Merekap Data Pendaftar &amp;</text>
+        <text x="450" y="465" text-anchor="middle" font-size="11">Menetapkan Kelulusan</text>
+
+        <line x1="340" y1="455" x2="260" y2="455" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 5: Siswa Cek Pengumuman                    -->
+        <!-- ============================================== -->
+        <!-- Node 6: Siswa Lihat Pengumuman & Daftar Ulang -->
+        <rect x="40" y="430" width="220" height="60" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="450" text-anchor="middle" font-size="12" font-weight="bold">Melihat Pengumuman Lulus</text>
+        <text x="150" y="465" text-anchor="middle" font-size="12" font-weight="bold">&amp; Melakukan Daftar Ulang</text>
+        <text x="150" y="480" text-anchor="middle" font-size="11">(Tanda tangan pernyataan)</text>
+
+        <line x1="150" y1="490" x2="150" y2="540" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 6: Panitia Catat Buku Induk                -->
+        <!-- ============================================== -->
+        <!-- Node 7: Siswa ke Bendahara -->
+        <rect x="40" y="540" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="560" text-anchor="middle" font-size="12" font-weight="bold">Membawa Berkas Daftar Ulang</text>
+        <text x="150" y="575" text-anchor="middle" font-size="11">untuk diserahkan ke Panitia</text>
+
+        <line x1="260" y1="565" x2="340" y2="565" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- Node 8: Panitia Simpan Berkas DU -->
+        <rect x="340" y="540" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="450" y="560" text-anchor="middle" font-size="12" font-weight="bold">Mencatat Siswa Baru di</text>
+        <text x="450" y="575" text-anchor="middle" font-size="11">Buku Induk / Arsip Sekolah</text>
+
+        <line x1="340" y1="580" x2="150" y2="580" stroke="#000" stroke-width="2"/>
+        <line x1="150" y1="580" x2="150" y2="650" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 7: Pembayaran Tunai                        -->
+        <!-- ============================================== -->
+        <!-- Node 9: Siswa Bayar -->
+        <rect x="40" y="650" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="670" text-anchor="middle" font-size="12" font-weight="bold">Menuju Ruang Bendahara &amp;</text>
+        <text x="150" y="685" text-anchor="middle" font-size="11">Membayar Uang Sekolah (Tunai)</text>
+
+        <line x1="260" y1="675" x2="640" y2="675" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- Node 10: Bendahara Terima Uang -->
+        <rect x="640" y="650" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="750" y="670" text-anchor="middle" font-size="12" font-weight="bold">Menerima Pembayaran</text>
+        <text x="750" y="685" text-anchor="middle" font-size="11">&amp; Mencatat di Buku Kas</text>
+
+        <line x1="750" y1="700" x2="750" y2="760" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 8: Cetak/Tulis Kuitansi                    -->
+        <!-- ============================================== -->
+        <!-- Node 11: Bendahara Buat Kuitansi -->
+        <rect x="640" y="760" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="750" y="780" text-anchor="middle" font-size="12" font-weight="bold">Menulis / Mencetak Kuitansi</text>
+        <text x="750" y="795" text-anchor="middle" font-size="11">Bukti Pembayaran Lunas</text>
+
+        <line x1="640" y1="785" x2="260" y2="785" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- Node 12: Siswa Terima Kuitansi -->
+        <rect x="40" y="760" width="220" height="50" rx="4" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="780" text-anchor="middle" font-size="12" font-weight="bold">Menerima Kuitansi Bukti</text>
+        <text x="150" y="795" text-anchor="middle" font-size="11">Pembayaran &amp; Daftar Ulang</text>
+
+        <line x1="150" y1="810" x2="150" y2="870" stroke="#000" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- ============================================== -->
+        <!-- ROW 9: FINISH                                  -->
+        <!-- ============================================== -->
+        <ellipse cx="150" cy="890" rx="40" ry="20" fill="#fff" stroke="#000" stroke-width="2"/>
+        <text x="150" y="895" text-anchor="middle" font-size="12" font-weight="bold">FINISH</text>
+
+    </svg>
+
+    <!-- POIN-POIN PENJELASAN -->
+    <div class="description-box">
+        <h2>Poin-Poin Alur Sistem PPDB Manual</h2>
+        
+        <h3>A. Tahap Pendaftaran & Penyerahan Berkas</h3>
+        <ol>
+            <li><strong>Calon Siswa / Orang Tua</strong> datang langsung ke sekolah untuk mengambil formulir pendaftaran fisik.</li>
+            <li><strong>Calon Siswa / Orang Tua</strong> mengisi formulir pendaftaran secara manual menggunakan alat tulis dan melengkapi berkas persyaratan yang diminta (seperti fotokopi Kartu Keluarga, Akta Kelahiran, Ijazah/SKL, dan pas foto).</li>
+            <li><strong>Calon Siswa / Orang Tua</strong> menyerahkan formulir yang sudah diisi beserta seluruh berkas persyaratan kepada <strong>Panitia PPDB</strong>.</li>
+        </ol>
+
+        <h3>B. Tahap Verifikasi & Pengumuman</h3>
+        <ol>
+            <li><strong>Panitia PPDB</strong> menerima berkas dan melakukan pengecekan/verifikasi kelengkapan dokumen.</li>
+            <li>Terdapat proses pengambilan keputusan (*decision*) pada tahap verifikasi:
+                <ul>
+                    <li><strong>Jika berkas tidak lengkap/salah:</strong> Panitia akan mengembalikan berkas tersebut agar diperbaiki atau dilengkapi oleh Calon Siswa/Ortu.</li>
+                    <li><strong>Jika berkas lengkap dan valid:</strong> Panitia akan menerima dokumen tersebut.</li>
+                </ul>
+            </li>
+            <li><strong>Panitia PPDB</strong> merekap data pendaftar yang sudah valid secara manual dan menetapkan status kelulusan (diterima).</li>
+            <li><strong>Calon Siswa / Orang Tua</strong> melihat pengumuman kelulusan (biasanya ditempel di mading sekolah) dan bersiap melakukan daftar ulang dengan menandatangani surat pernyataan.</li>
+        </ol>
+
+        <h3>C. Tahap Daftar Ulang & Pencatatan Buku Induk</h3>
+        <ol>
+            <li><strong>Calon Siswa / Orang Tua</strong> membawa kembali berkas persyaratan daftar ulang dan menyerahkannya kepada <strong>Panitia PPDB</strong>.</li>
+            <li><strong>Panitia PPDB</strong> mencatat data calon siswa yang sudah resmi mendaftar ulang ke dalam <strong>Buku Induk</strong> atau arsip resmi sekolah secara manual.</li>
+        </ol>
+
+        <h3>D. Tahap Pembayaran & Selesai</h3>
+        <ol>
+            <li>Setelah data dicatat di buku induk, <strong>Calon Siswa / Orang Tua</strong> menuju ruang <strong>Bendahara</strong> untuk melakukan pembayaran biaya sekolah (seperti infak, seragam, atau LKS) secara tunai.</li>
+            <li><strong>Bendahara</strong> menerima uang tunai dari siswa/ortu dan mencatat transaksi tersebut ke dalam <strong>Buku Kas</strong> bendahara.</li>
+            <li><strong>Bendahara</strong> menulis atau mencetak <strong>Kuitansi Fisik</strong> (nota) yang sudah distempel sebagai bukti pembayaran yang sah.</li>
+            <li><strong>Calon Siswa / Orang Tua</strong> menerima kuitansi pembayaran. Proses pendaftaran PPDB manual dinyatakan <strong>SELESAI (FINISH)</strong>.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

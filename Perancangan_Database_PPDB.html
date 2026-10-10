@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perancangan Basis Data - Sistem PPDB</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 40px 20px;
+            color: #000;
+            line-height: 1.8;
+            background: #fff;
+            font-size: 12pt;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 16pt;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 12pt;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 13pt;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        p {
+            text-align: justify;
+            text-indent: 40px;
+            margin-bottom: 15px;
+            font-size: 12pt;
+        }
+        p.no-indent {
+            text-indent: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px 10px;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
+            background-color: #fff;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11pt;
+        }
+        .btn-print {
+            display: block;
+            margin: 0 auto 30px auto;
+            padding: 8px 20px;
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 12pt;
+            font-family: sans-serif;
+        }
+        .btn-print:hover {
+            background: #eee;
+        }
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.print()" class="btn-print no-print">Cetak Dokumen</button>
+
+    <div class="container">
+        <h1>Perancangan Basis Data</h1>
+        <div class="subtitle">Sistem Informasi Penerimaan Peserta Didik Baru (PPDB)</div>
+
+        <p>Perancangan basis data dilakukan untuk mendukung kebutuhan sistem dalam mencatat dan mengelola data pendaftaran calon siswa, verifikasi berkas, transaksi pembayaran, serta pengelolaan informasi publik pada Sistem Informasi Penerimaan Peserta Didik Baru (PPDB). Basis data dirancang menggunakan MySQL, dan mencakup entitas utama seperti <code>users</code>, <code>students</code>, <code>payments</code>, <code>payment_items</code>, serta entitas pendukung lainnya.</p>
+
+        <h2>1. Struktur Tabel</h2>
+        <p>Berikut adalah rincian spesifikasi dari tabel-tabel utama yang digunakan di dalam sistem beserta kolom, tipe data, dan keterangannya.</p>
+
+        <!-- TABEL 1 -->
+        <h3>a. Tabel <code>users</code></h3>
+        <p class="no-indent">Tabel ini menyimpan data akun dan autentikasi seluruh pengguna yang berinteraksi dengan sistem, meliputi Admin, Bendahara, maupun Calon Siswa. Setiap pengguna dibedakan berdasarkan atribut <code>role</code> yang menentukan hak akses dan fungsionalitas dalam sistem.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>name</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Nama lengkap pengguna</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>email</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Alamat email untuk login (Unique)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>password</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Kata sandi terenkripsi (Bcrypt Hash)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>role</td>
+                    <td>ENUM</td>
+                    <td>Hak akses: 'admin', 'bendahara', 'siswa'</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>google_id</td>
+                    <td>VARCHAR(255)</td>
+                    <td>ID OAuth untuk Login with Google (Nullable)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABEL 2 -->
+        <h3>b. Tabel <code>students</code></h3>
+        <p class="no-indent">Tabel ini dikhususkan untuk menyimpan seluruh data biodata, latar belakang pendidikan, jalur pendaftaran, hingga status penerimaan dari profil calon peserta didik baru yang mendaftar melalui sistem.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>user_id</td>
+                    <td>BIGINT</td>
+                    <td>Foreign Key ke tabel <code>users</code> (id)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>nomor_pendaftaran</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Nomor identitas pendaftaran unik (auto-generate)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>nisn</td>
+                    <td>VARCHAR(20)</td>
+                    <td>Nomor Induk Siswa Nasional</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>nama_lengkap</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Nama lengkap calon siswa sesuai dokumen resmi</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>jenis_kelamin</td>
+                    <td>ENUM</td>
+                    <td>Jenis kelamin: 'L' (Laki-laki) atau 'P' (Perempuan)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>tanggal_lahir</td>
+                    <td>DATE</td>
+                    <td>Tanggal lahir calon siswa</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>jalur</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Jalur pendaftaran (Reguler, Prestasi, Afirmasi)</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>status</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Status pendaftaran (Proses, Diterima, Ditolak)</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>kelas</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Penempatan kelas setelah dinyatakan diterima</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABEL 3 -->
+        <h3>c. Tabel <code>payments</code></h3>
+        <p class="no-indent">Tabel ini berfungsi sebagai pencatat seluruh riwayat transaksi keuangan pembayaran biaya pendaftaran yang dilakukan oleh calon siswa melalui sistem. Setiap transaksi terkait dengan satu profil siswa melalui Foreign Key.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>student_id</td>
+                    <td>BIGINT</td>
+                    <td>Foreign Key ke tabel <code>students</code> (id)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>metode_pembayaran</td>
+                    <td>VARCHAR(100)</td>
+                    <td>Nama bank atau platform dompet digital</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>jumlah_bayar</td>
+                    <td>DECIMAL(15,2)</td>
+                    <td>Nominal dana yang dibayarkan</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>bukti_transfer</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Path file gambar bukti pembayaran</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>status</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Status verifikasi (Menunggu, Lunas, Ditolak)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABEL 4 -->
+        <h3>d. Tabel <code>payment_items</code></h3>
+        <p class="no-indent">Tabel pendukung ini menyimpan daftar referensi komponen rincian biaya pendaftaran yang berlaku secara dinamis berdasarkan jalur pendaftaran yang dipilih oleh calon siswa.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>nama_biaya</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Deskripsi komponen biaya (misal: Seragam, SPP)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>jumlah</td>
+                    <td>DECIMAL(15,2)</td>
+                    <td>Tarif nominal dari komponen biaya</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>jalur</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Jalur pendaftaran yang dikenakan biaya ini</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABEL 5 -->
+        <h3>e. Tabel <code>contents</code></h3>
+        <p class="no-indent">Tabel ini menampung konten informasi publik yang dapat dikelola oleh Admin, seperti pengumuman resmi, berita, dan informasi terkait proses PPDB yang ditampilkan pada halaman beranda sistem.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>judul</td>
+                    <td>VARCHAR(255)</td>
+                    <td>Judul berita atau pengumuman</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>tipe</td>
+                    <td>VARCHAR(50)</td>
+                    <td>Kategori konten (Pengumuman, Berita, Informasi)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>isi_konten</td>
+                    <td>TEXT</td>
+                    <td>Isi teks lengkap dari konten tersebut</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- TABEL 6 -->
+        <h3>f. Tabel <code>settings</code></h3>
+        <p class="no-indent">Tabel ini menyimpan opsi konfigurasi dinamis yang dapat diubah oleh Admin tanpa perlu mengubah kode sumber program, seperti status pembukaan jalur pendaftaran dan pengaturan sistem lainnya.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Field</th>
+                    <th>Tipe Data</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>id</td>
+                    <td>BIGINT</td>
+                    <td>Primary Key, Auto Increment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>kunci</td>
+                    <td>VARCHAR(100)</td>
+                    <td>Nama identifier unik pengaturan</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>nilai</td>
+                    <td>TEXT</td>
+                    <td>Nilai dari pengaturan tersebut</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- BAGIAN 2: RELASI -->
+        <h2>2. Relasi Antar Tabel</h2>
+        <p>Relasi antar tabel dikelola menggunakan mekanisme kunci tamu (<i>Foreign Key</i>) yang merujuk pada kunci utama (<i>Primary Key</i>) tabel lain. Struktur relasi ini dirancang untuk menjaga integritas data dan menghindari redundansi informasi di dalam basis data. Berikut adalah pemetaan relasi antar tabel yang digunakan dalam sistem.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tabel Utama</th>
+                    <th>Tabel Terkait</th>
+                    <th>Kardinalitas</th>
+                    <th>Foreign Key</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><code>users</code></td>
+                    <td><code>students</code></td>
+                    <td>One-to-Many</td>
+                    <td>user_id</td>
+                    <td>Satu akun pengguna dapat memiliki satu atau lebih profil pendaftaran siswa.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><code>students</code></td>
+                    <td><code>payments</code></td>
+                    <td>One-to-Many</td>
+                    <td>student_id</td>
+                    <td>Satu siswa dapat memiliki beberapa riwayat transaksi pembayaran.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><code>payment_items</code></td>
+                    <td><code>students</code></td>
+                    <td>Implisit (Logis)</td>
+                    <td>jalur</td>
+                    <td>Terhubung secara logis melalui pencocokan atribut <code>jalur</code> pendaftaran.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

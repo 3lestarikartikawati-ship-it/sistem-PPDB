@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Diagrams Lengkap PPDB</title>
+    <style>
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            padding: 40px; 
+            background-color: #ffffff;
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: Arial, sans-serif;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 60px 0 30px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram-container { 
+            margin-bottom: 60px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 { 
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: normal;
+            width: 700px;
+            text-align: left;
+        }
+        svg {
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kumpulan Activity Diagram Lengkap - Sistem PPDB</h1>
+
+    <!-- ==================== CALON SISWA ==================== -->
+    <div class="section-title">Aktor: Calon Siswa</div>
+    
+    <div class="diagram-container">
+        <h2>1. Activity Diagram Login (Calon Siswa)</h2>
+        <svg width="700" height="550" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="548" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="549" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Calon Siswa</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="100" r="14" fill="black" />
+            <rect x="35" y="150" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="174" text-anchor="middle" font-size="12">Mengisi Form Login (NISN &amp; Tgl Lahir)</text>
+            <rect x="400" y="220" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="244" text-anchor="middle" font-size="12">Memvalidasi Kredensial</text>
+            <polygon points="525,290 585,320 525,350 465,320" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="324" text-anchor="middle" font-size="11">Login Valid?</text>
+            <rect x="400" y="420" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="444" text-anchor="middle" font-size="12">Tampilkan Dashboard Siswa</text>
+            <circle cx="525" cy="510" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="510" r="6" fill="black" />
+            
+            <line x1="175" y1="114" x2="175" y2="150" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+            <polyline points="175,190 175,240 398,240" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+            <line x1="525" y1="260" x2="525" y2="290" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+            <polyline points="585,320 670,320 670,170 317,170" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+            <text x="610" y="315" font-size="10">Tidak</text>
+            <line x1="525" y1="350" x2="525" y2="420" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+            <text x="532" y="385" font-size="10">Ya</text>
+            <line x1="525" y1="460" x2="525" y2="498" stroke="black" stroke-width="1.2" marker-end="url(#arr1)" />
+        </svg>
+    </div>
+
+    <div class="diagram-container">
+        <h2>2. Activity Diagram Pendaftaran (Calon Siswa)</h2>
+        <svg width="700" height="600" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="598" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="599" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Calon Siswa</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="80" r="14" fill="black" />
+            <rect x="35" y="130" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="154" text-anchor="middle" font-size="12">Mengisi Form &amp; Upload Berkas</text>
+            <rect x="400" y="210" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="234" text-anchor="middle" font-size="12">Memvalidasi Kelengkapan Data</text>
+            <polygon points="525,280 585,310 525,340 465,310" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="314" text-anchor="middle" font-size="11">Data Lengkap?</text>
+            <rect x="400" y="390" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="414" text-anchor="middle" font-size="12">Menyimpan Data ke Database</text>
+            <rect x="400" y="480" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="504" text-anchor="middle" font-size="12">Menampilkan Bukti Pendaftaran</text>
+            <circle cx="525" cy="560" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="560" r="6" fill="black" />
+            
+            <line x1="175" y1="94" x2="175" y2="130" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <polyline points="175,170 175,230 398,230" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <line x1="525" y1="250" x2="525" y2="280" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <polyline points="585,310 670,310 670,150 317,150" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <text x="610" y="305" font-size="10">Tidak</text>
+            <line x1="525" y1="340" x2="525" y2="390" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <text x="532" y="375" font-size="10">Ya</text>
+            <line x1="525" y1="430" x2="525" y2="480" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+            <line x1="525" y1="520" x2="525" y2="548" stroke="black" stroke-width="1.2" marker-end="url(#arr2)" />
+        </svg>
+    </div>
+
+    <div class="diagram-container">
+        <h2>3. Activity Diagram Cetak Dokumen (Calon Siswa)</h2>
+        <svg width="700" height="430" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="428" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="429" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Calon Siswa</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="80" r="14" fill="black" />
+            <rect x="35" y="130" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="154" text-anchor="middle" font-size="12">Klik Cetak Bukti / SK</text>
+            <rect x="400" y="210" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="234" text-anchor="middle" font-size="12">Membuat File PDF (Generate)</text>
+            <rect x="400" y="300" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="324" text-anchor="middle" font-size="12">Menampilkan Dialog Unduh PDF</text>
+            <circle cx="525" cy="390" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="390" r="6" fill="black" />
+            
+            <line x1="175" y1="94" x2="175" y2="130" stroke="black" stroke-width="1.2" marker-end="url(#arr3)" />
+            <polyline points="175,170 175,230 398,230" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr3)" />
+            <line x1="525" y1="250" x2="525" y2="300" stroke="black" stroke-width="1.2" marker-end="url(#arr3)" />
+            <line x1="525" y1="340" x2="525" y2="378" stroke="black" stroke-width="1.2" marker-end="url(#arr3)" />
+        </svg>
+    </div>
+
+    <!-- ==================== ADMIN ==================== -->
+    <div class="section-title">Aktor: Admin</div>
+    
+    <div class="diagram-container">
+        <h2>4. Activity Diagram Login (Admin)</h2>
+        <svg width="700" height="550" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="548" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="549" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Admin</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="100" r="14" fill="black" />
+            <rect x="35" y="150" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="174" text-anchor="middle" font-size="12">Mengisi Form Login (Email &amp; Sandi)</text>
+            <rect x="400" y="220" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="244" text-anchor="middle" font-size="12">Memvalidasi Kredensial</text>
+            <polygon points="525,290 585,320 525,350 465,320" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="324" text-anchor="middle" font-size="11">Login Valid?</text>
+            <rect x="400" y="420" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="444" text-anchor="middle" font-size="12">Tampilkan Dashboard Admin</text>
+            <circle cx="525" cy="510" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="510" r="6" fill="black" />
+            
+            <line x1="175" y1="114" x2="175" y2="150" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+            <polyline points="175,190 175,240 398,240" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+            <line x1="525" y1="260" x2="525" y2="290" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+            <polyline points="585,320 670,320 670,170 317,170" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+            <text x="610" y="315" font-size="10">Tidak</text>
+            <line x1="525" y1="350" x2="525" y2="420" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+            <text x="532" y="385" font-size="10">Ya</text>
+            <line x1="525" y1="460" x2="525" y2="498" stroke="black" stroke-width="1.2" marker-end="url(#arr4)" />
+        </svg>
+    </div>
+
+    <div class="diagram-container">
+        <h2>5. Activity Diagram Validasi Berkas (Admin)</h2>
+        <svg width="700" height="600" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="598" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="599" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Admin</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="80" r="14" fill="black" />
+            <rect x="35" y="130" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="154" text-anchor="middle" font-size="12">Memilih Data Pendaftar</text>
+            <rect x="400" y="210" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="234" text-anchor="middle" font-size="12">Menampilkan Berkas Pendaftaran</text>
+            <rect x="35" y="290" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="314" text-anchor="middle" font-size="12">Melakukan Verifikasi (Valid/Tolak)</text>
+            <rect x="400" y="380" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="404" text-anchor="middle" font-size="12">Menyimpan Status Validasi Berkas</text>
+            <rect x="400" y="470" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="494" text-anchor="middle" font-size="12">Memperbarui Dashboard</text>
+            <circle cx="525" cy="550" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="550" r="6" fill="black" />
+            
+            <line x1="175" y1="94" x2="175" y2="130" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+            <polyline points="175,170 175,230 398,230" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+            <polyline points="525,250 525,310 317,310" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+            <polyline points="175,330 175,400 398,400" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+            <line x1="525" y1="420" x2="525" y2="470" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+            <line x1="525" y1="510" x2="525" y2="538" stroke="black" stroke-width="1.2" marker-end="url(#arr5)" />
+        </svg>
+    </div>
+
+    <!-- ==================== BENDAHARA ==================== -->
+    <div class="section-title">Aktor: Bendahara</div>
+    
+    <div class="diagram-container">
+        <h2>6. Activity Diagram Login (Bendahara)</h2>
+        <svg width="700" height="550" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="548" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="549" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Bendahara</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="100" r="14" fill="black" />
+            <rect x="35" y="150" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="174" text-anchor="middle" font-size="12">Mengisi Form Login (Email &amp; Sandi)</text>
+            <rect x="400" y="220" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="244" text-anchor="middle" font-size="12">Memvalidasi Kredensial</text>
+            <polygon points="525,290 585,320 525,350 465,320" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="324" text-anchor="middle" font-size="11">Login Valid?</text>
+            <rect x="400" y="420" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="444" text-anchor="middle" font-size="12">Tampilkan Dashboard Bendahara</text>
+            <circle cx="525" cy="510" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="510" r="6" fill="black" />
+            
+            <line x1="175" y1="114" x2="175" y2="150" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+            <polyline points="175,190 175,240 398,240" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+            <line x1="525" y1="260" x2="525" y2="290" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+            <polyline points="585,320 670,320 670,170 317,170" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+            <text x="610" y="315" font-size="10">Tidak</text>
+            <line x1="525" y1="350" x2="525" y2="420" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+            <text x="532" y="385" font-size="10">Ya</text>
+            <line x1="525" y1="460" x2="525" y2="498" stroke="black" stroke-width="1.2" marker-end="url(#arr6)" />
+        </svg>
+    </div>
+
+    <div class="diagram-container">
+        <h2>7. Activity Diagram Input Pembayaran (Bendahara)</h2>
+        <svg width="700" height="600" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="black" /></marker></defs>
+            <rect x="1" y="1" width="698" height="598" fill="none" stroke="black" stroke-width="1.5" />
+            <line x1="1" y1="50" x2="699" y2="50" stroke="black" stroke-width="1.5" />
+            <line x1="350" y1="1" x2="350" y2="599" stroke="black" stroke-width="1.5" />
+            <text x="175" y="32" text-anchor="middle" font-weight="bold" font-size="14">Bendahara</text>
+            <text x="525" y="32" text-anchor="middle" font-weight="bold" font-size="14">Sistem PPDB</text>
+            
+            <circle cx="175" cy="80" r="14" fill="black" />
+            <rect x="35" y="130" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="154" text-anchor="middle" font-size="12">Memilih Data Siswa</text>
+            <rect x="400" y="210" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="234" text-anchor="middle" font-size="12">Menampilkan Form Pembayaran</text>
+            <rect x="35" y="290" width="280" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="175" y="314" text-anchor="middle" font-size="11.5">Memilih Jenis &amp; Input Nominal Manual</text>
+            <rect x="400" y="370" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="394" text-anchor="middle" font-size="12">Menyimpan Data Pembayaran</text>
+            <rect x="400" y="460" width="250" height="40" rx="20" fill="white" stroke="black" stroke-width="1.2" />
+            <text x="525" y="484" text-anchor="middle" font-size="12">Memperbarui Dashboard</text>
+            <circle cx="525" cy="540" r="12" fill="none" stroke="black" stroke-width="1.5" />
+            <circle cx="525" cy="540" r="6" fill="black" />
+            
+            <line x1="175" y1="94" x2="175" y2="130" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+            <polyline points="175,170 175,230 398,230" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+            <polyline points="525,250 525,310 317,310" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+            <polyline points="175,330 175,390 398,390" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+            <line x1="525" y1="410" x2="525" y2="460" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+            <line x1="525" y1="500" x2="525" y2="528" stroke="black" stroke-width="1.2" marker-end="url(#arr7)" />
+        </svg>
+    </div>
+
+</body>
+</html>

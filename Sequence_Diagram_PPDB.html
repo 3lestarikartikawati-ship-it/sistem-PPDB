@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Diagrams - Sistem PPDB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .mermaid {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        .tab-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-slate-900 mb-4">Sequence Diagrams Sistem PPDB</h1>
+            <p class="text-lg text-slate-600">Dokumentasi alur interaksi setiap aktor dalam sistem Pendaftaran Peserta Didik Baru.</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <button onclick="showTab('siswa')" class="tab-btn active px-6 py-2.5 rounded-full border border-slate-300 font-medium transition-all duration-200 hover:shadow-md">Calon Siswa</button>
+            <button onclick="showTab('admin')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-300 font-medium transition-all duration-200 hover:shadow-md">Administrator</button>
+            <button onclick="showTab('bendahara')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-300 font-medium transition-all duration-200 hover:shadow-md">Bendahara</button>
+            <button onclick="showTab('publik')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-300 font-medium transition-all duration-200 hover:shadow-md">Publik</button>
+        </div>
+
+        <!-- Tab Contents -->
+        
+        <!-- SISWA -->
+        <div id="siswa" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-blue-500 pl-4 mb-4">Pendaftaran & Pengisian Data Siswa</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Siswa
+    participant Sistem
+    participant Database
+    
+    Siswa->>Sistem: Mengakses Halaman Pendaftaran
+    Sistem-->>Siswa: Menampilkan Form Registrasi
+    Siswa->>Sistem: Submit Form (Nama, Email, Password, Jalur)
+    Sistem->>Database: Simpan Data Akun (Role: Student)
+    Database-->>Sistem: Berhasil Disimpan
+    Sistem-->>Siswa: Redirect ke Dashboard Siswa / Halaman Login
+    
+    Siswa->>Sistem: Login dengan Kredensial / Google OAuth
+    Sistem->>Database: Verifikasi Kredensial
+    Database-->>Sistem: Valid & Token
+    Sistem-->>Siswa: Tampilkan Dashboard Siswa
+    
+    Siswa->>Sistem: Mengisi Form Biodata Lengkap
+    Sistem->>Database: Update Biodata Siswa
+    Database-->>Sistem: Berhasil
+    Sistem-->>Siswa: Notifikasi Data Tersimpan
+    
+    Siswa->>Sistem: Upload Dokumen Persyaratan (KK, Ijazah, dll)
+    Sistem->>Database: Simpan Path File
+    Database-->>Sistem: Berhasil
+    Sistem-->>Siswa: Notifikasi Upload Sukses & Menunggu Verifikasi
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-blue-500 pl-4 mb-4">Proses Pembayaran Siswa</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Siswa
+    participant Sistem
+    participant PaymentGateway
+    participant Database
+    
+    Siswa->>Sistem: Mengakses Menu Pembayaran
+    Sistem->>Database: Cek Status Tagihan & Jalur Pendaftaran
+    Database-->>Sistem: Data Tagihan
+    Sistem-->>Siswa: Menampilkan Detail Tagihan
+    
+    Siswa->>Sistem: Klik "Bayar Sekarang" (Midtrans)
+    Sistem->>PaymentGateway: Request Snap Token
+    PaymentGateway-->>Sistem: Return Snap Token
+    Sistem-->>Siswa: Menampilkan Pop-up Payment (Midtrans Snap)
+    
+    Siswa->>PaymentGateway: Melakukan Pembayaran
+    PaymentGateway-->>Sistem: Webhook/Callback (Status: Settlement)
+    Sistem->>Database: Update Status Pembayaran = Lunas
+    Database-->>Sistem: Success
+    Sistem-->>Siswa: Tampilkan Bukti Pembayaran Lunas
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN -->
+        <div id="admin" class="tab-content hidden">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-green-500 pl-4 mb-4">Verifikasi Dokumen & Pengelolaan Jalur</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Admin
+    participant Sistem
+    participant Database
+    
+    Admin->>Sistem: Login sebagai Admin
+    Sistem-->>Admin: Menampilkan Dashboard Admin
+    
+    Admin->>Sistem: Akses Menu Verifikasi Pendaftar
+    Sistem->>Database: Get List Siswa Menunggu Verifikasi
+    Database-->>Sistem: Data Siswa & Dokumen
+    Sistem-->>Admin: Tampilkan List Pendaftar
+    
+    Admin->>Sistem: Memeriksa Dokumen Siswa
+    alt Dokumen Valid
+        Admin->>Sistem: Set Status = "Diterima"
+    else Dokumen Tidak Valid
+        Admin->>Sistem: Set Status = "Ditolak / Perbaikan"
+    end
+    
+    Sistem->>Database: Update Status Pendaftaran
+    Database-->>Sistem: Berhasil
+    Sistem-->>Admin: Notifikasi Status Diperbarui
+    
+    Admin->>Sistem: Akses Pengaturan Jalur (Reguler/Prestasi/Afirmasi)
+    Admin->>Sistem: Toggle Status Jalur & Syarat Dokumen
+    Sistem->>Database: Update Konfigurasi Sistem
+    Database-->>Sistem: Berhasil
+    Sistem-->>Admin: Pengaturan Disimpan
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-green-500 pl-4 mb-4">Plotting Kelas & Export Data</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Admin
+    participant Sistem
+    participant Database
+    
+    Admin->>Sistem: Akses Menu Manajemen Kelas
+    Sistem->>Database: Get List Siswa "Diterima" & Data Kelas
+    Database-->>Sistem: Data Siswa & Kelas
+    Sistem-->>Admin: Tampilkan Form Plotting Kelas
+    
+    Admin->>Sistem: Assign Siswa ke Kelas Tertentu
+    Sistem->>Database: Update Data Kelas Siswa
+    Database-->>Sistem: Berhasil
+    Sistem-->>Admin: Notifikasi Plotting Selesai
+    
+    Admin->>Sistem: Klik "Export Data Siswa (PDF/Excel)"
+    Sistem->>Database: Fetch Semua Data Sesuai Filter
+    Database-->>Sistem: Data Kumpulan Siswa
+    Sistem->>Sistem: Generate File (PDF/Excel)
+    Sistem-->>Admin: Download File Document
+                </div>
+            </div>
+        </div>
+
+        <!-- BENDAHARA -->
+        <div id="bendahara" class="tab-content hidden">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-purple-500 pl-4 mb-4">Verifikasi & Laporan Keuangan</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Bendahara
+    participant Sistem
+    participant Database
+    
+    Bendahara->>Sistem: Login sebagai Bendahara
+    Sistem-->>Bendahara: Menampilkan Dashboard Bendahara
+    
+    Bendahara->>Sistem: Akses Menu Transaksi Pembayaran
+    Sistem->>Database: Get List Data Transaksi
+    Database-->>Sistem: Data Transaksi (Lunas / Pending)
+    Sistem-->>Bendahara: Tampilkan Tabel Transaksi
+    
+    opt Jika ada masalah dengan otomatisasi
+        Bendahara->>Sistem: Verifikasi Manual Pembayaran
+        Sistem->>Database: Update Status = Lunas
+        Database-->>Sistem: Berhasil
+        Sistem-->>Bendahara: Status Diperbarui
+    end
+    
+    Bendahara->>Sistem: Akses Menu Laporan Keuangan
+    Bendahara->>Sistem: Filter berdasarkan Tanggal / Jalur
+    Sistem->>Database: Get Rekap Keuangan
+    Database-->>Sistem: Data Rekap
+    Sistem-->>Bendahara: Tampilkan Laporan
+    Bendahara->>Sistem: Export Laporan (PDF/Excel)
+    Sistem-->>Bendahara: Download File Laporan
+                </div>
+            </div>
+        </div>
+
+        <!-- PUBLIK -->
+        <div id="publik" class="tab-content hidden">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 border-l-4 border-orange-500 pl-4 mb-4">Akses Informasi & Pengumuman</h2>
+                <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Publik
+    participant Sistem
+    participant Database
+    
+    Publik->>Sistem: Akses Landing Page PPDB
+    Sistem->>Database: Get Info Sekolah, Kuota & Jadwal
+    Database-->>Sistem: Data Landing Page
+    Sistem-->>Publik: Menampilkan Halaman Utama
+    
+    Publik->>Sistem: Akses Halaman Pengumuman
+    Sistem->>Database: Get Data Pengumuman Kelulusan (Public)
+    Database-->>Sistem: Data Hasil Seleksi
+    Sistem-->>Publik: Menampilkan Daftar Siswa Diterima
+    
+    opt Ketertarikan Mendaftar
+        Publik->>Sistem: Klik "Daftar Sekarang"
+        Sistem-->>Publik: Redirect ke Halaman Registrasi Siswa Baru
+    end
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            sequence: {
+                showSequenceNumbers: true,
+                actorMargin: 50,
+            }
+        });
+
+        function showTab(tabId) {
+            // Sembunyikan semua konten tab
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Hapus status aktif dari semua tombol
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active');
+                el.classList.add('text-slate-600', 'bg-white');
+            });
+
+            // Tampilkan konten tab yang dipilih
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Tambahkan status aktif pada tombol yang diklik
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('text-slate-600', 'bg-white');
+        }
+    </script>
+</body>
+</html>
+

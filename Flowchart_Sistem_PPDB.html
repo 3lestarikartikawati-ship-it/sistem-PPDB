@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart Sistem PPDB - SMP Muhammadiyah Kaliwiro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            padding: 30px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .page-subtitle {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .flowchart-wrapper {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto;
+            border: 2px solid #333;
+        }
+
+        /* Swimlane Headers */
+        .swimlane-headers {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid #333;
+            background: #f5f5f5;
+        }
+        .swimlane-header {
+            text-align: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 12px 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .swimlane-header:not(:last-child) {
+            border-right: 2px solid #333;
+        }
+
+        /* Grid Body */
+        .swimlane-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            min-height: 80px;
+            position: relative;
+        }
+        .lane {
+            border-right: 2px solid #333;
+            min-height: 100%;
+            position: relative;
+        }
+        .lane:last-child {
+            border-right: none;
+        }
+
+        /* Row container for content */
+        .flow-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            position: relative;
+        }
+        .flow-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 12px;
+            min-height: 76px;
+            position: relative;
+        }
+        .flow-cell:not(:last-child) {
+            border-right: 2px solid #333;
+        }
+
+        /* Node shapes */
+        .node {
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .node-oval {
+            border: 2px solid #333;
+            border-radius: 50px;
+            padding: 8px 28px;
+            background: #fff;
+        }
+
+        .node-rect {
+            border: 2px solid #333;
+            border-radius: 4px;
+            padding: 10px 16px;
+            background: #fff;
+            max-width: 200px;
+        }
+
+        .node-diamond-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .node-diamond {
+            width: 110px;
+            height: 110px;
+            border: 2px solid #333;
+            background: #fff;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .node-diamond span {
+            transform: rotate(-45deg);
+            font-size: 0.68rem;
+            font-weight: 600;
+            line-height: 1.3;
+            text-align: center;
+            max-width: 90px;
+        }
+
+        /* Arrows via SVG overlay */
+        .arrows-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Arrow label */
+        .arrow-label {
+            position: absolute;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #333;
+            background: #fff;
+            padding: 1px 5px;
+            z-index: 3;
+        }
+
+        /* Print styles */
+        @media print {
+            body { padding: 10px; }
+            .flowchart-wrapper { border-width: 1.5px; }
+        }
+    </style>
+</head>
+<body>
+
+<p class="page-title">Flowchart Alur Sistem PPDB</p>
+<p class="page-subtitle">SMP Muhammadiyah Kaliwiro — Tahun Ajaran 2026/2027</p>
+
+<div class="flowchart-wrapper" id="flowchart">
+    <!-- Swimlane Headers -->
+    <div class="swimlane-headers">
+        <div class="swimlane-header">Calon Siswa</div>
+        <div class="swimlane-header">Admin</div>
+        <div class="swimlane-header">Bendahara</div>
+    </div>
+
+    <!-- ROW 1: Start -->
+    <div class="flow-row" id="row1">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-oval" id="n-start">Start</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 2: Registrasi -->
+    <div class="flow-row" id="row2">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-registrasi">Registrasi &amp; Login<br>Sistem Web PPDB</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 3: Input Biodata + Login Admin -->
+    <div class="flow-row" id="row3">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-input">Input Biodata &amp;<br>Upload Dokumen</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-login-admin">Login Dashboard<br>Sistem (Admin)</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 4: Verifikasi -->
+    <div class="flow-row" id="row4">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-verifikasi1">Verifikasi Data &amp;<br>Dokumen Online</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 5: Decision Memenuhi Syarat -->
+    <div class="flow-row" id="row5" style="min-height:130px;">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node-diamond-wrapper">
+                <div class="node-diamond" id="n-decision1">
+                    <span>Memenuhi Syarat?</span>
+                </div>
+            </div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 6: Ditolak / Diterima -->
+    <div class="flow-row" id="row6">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-ditolak">Selesai (Ditolak)</div>
+            <div class="arrow-label" style="top:30%;left:52%;transform:translateX(-50%);">Tidak</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-diterima">Sistem Update Status<br>Menjadi "Diterima"</div>
+            <div class="arrow-label" style="top:8%;left:50%;transform:translateX(-50%);">Ya</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 7: Cek Pengumuman -->
+    <div class="flow-row" id="row7" style="min-height:130px;">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node-diamond-wrapper">
+                <div class="node-diamond" id="n-cek-pengumuman">
+                    <span>Tanggal Pengumuman?</span>
+                </div>
+            </div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 8: Menunggu / Lulus -->
+    <div class="flow-row" id="row8">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-menunggu">Siswa Melihat<br>"Menunggu Pengumuman"</div>
+            <div class="arrow-label" style="top:30%;left:55%;">Belum</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-pengumuman-lulus">Pengumuman Lulus<br>+ Cetak SKD</div>
+            <div class="arrow-label" style="top:8%;left:50%;transform:translateX(-50%);">Sudah</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 9: Daftar Ulang -->
+    <div class="flow-row" id="row9">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-daftar-ulang">Upload Berkas<br>Daftar Ulang<br>(Akte, KK, SKL)</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 10: Verifikasi DU -->
+    <div class="flow-row" id="row10">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-verifikasi-du">Verifikasi Berkas<br>Daftar Ulang</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 11: Decision DU -->
+    <div class="flow-row" id="row11" style="min-height:130px;">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node-diamond-wrapper">
+                <div class="node-diamond" id="n-decision-du">
+                    <span>Berkas DU Valid?</span>
+                </div>
+            </div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 12: Revisi DU / Lanjut Bayar -->
+    <div class="flow-row" id="row12">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-revisi-du">Revisi Berkas<br>Daftar Ulang</div>
+            <div class="arrow-label" style="top:30%;left:55%;">Tidak</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-lanjut-bayar">Lanjut ke<br>Pembayaran</div>
+            <div class="arrow-label" style="top:8%;left:50%;transform:translateX(-50%);">Ya</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 13: Bayar + Login Bendahara -->
+    <div class="flow-row" id="row13">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-bayar">Membayar Daftar Ulang<br>(Transfer / Midtrans)</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell">
+            <div class="node node-rect" id="n-login-bendahara">Login Dashboard<br>Sistem (Bendahara)</div>
+        </div>
+    </div>
+
+    <!-- ROW 14: Verifikasi Pembayaran -->
+    <div class="flow-row" id="row14">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell">
+            <div class="node node-rect" id="n-verifikasi-bayar">Verifikasi Bukti<br>Pembayaran Online</div>
+        </div>
+    </div>
+
+    <!-- ROW 15: Decision Pembayaran -->
+    <div class="flow-row" id="row15" style="min-height:130px;">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell">
+            <div class="node-diamond-wrapper">
+                <div class="node-diamond" id="n-decision-bayar">
+                    <span>Pembayaran Valid?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 16: Update Aktif -->
+    <div class="flow-row" id="row16">
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-aktif">Sistem Update Status<br>Menjadi "Aktif"</div>
+            <div class="arrow-label" style="top:8%;right:0;">Ya</div>
+        </div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 17: Cetak -->
+    <div class="flow-row" id="row17">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-rect" id="n-cetak">Cetak Bukti Pendaftaran<br>&amp; Kuitansi Pembayaran</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- ROW 18: End -->
+    <div class="flow-row" id="row18">
+        <div class="flow-cell" style="border-right:2px solid #333;">
+            <div class="node node-oval" id="n-end">Selesai</div>
+        </div>
+        <div class="flow-cell" style="border-right:2px solid #333;"></div>
+        <div class="flow-cell"></div>
+    </div>
+
+    <!-- SVG Arrows Overlay -->
+    <svg class="arrows-svg" id="arrowsSvg">
+        <defs>
+            <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+            </marker>
+        </defs>
+    </svg>
+</div>
+
+<script>
+    function getCenter(el) {
+        const svg = document.getElementById('arrowsSvg');
+        const svgRect = svg.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
+        return {
+            x: rect.left + rect.width / 2 - svgRect.left,
+            y: rect.top + rect.height / 2 - svgRect.top,
+            top: rect.top - svgRect.top,
+            bottom: rect.bottom - svgRect.top,
+            left: rect.left - svgRect.left,
+            right: rect.right - svgRect.left,
+            width: rect.width,
+            height: rect.height
+        };
+    }
+
+    function drawArrow(fromId, toId, options = {}) {
+        const svg = document.getElementById('arrowsSvg');
+        const from = getCenter(document.getElementById(fromId));
+        const to = getCenter(document.getElementById(toId));
+
+        let path;
+        const type = options.type || 'straight-down';
+
+        if (type === 'straight-down') {
+            const x = from.x;
+            const y1 = from.bottom;
+            const y2 = to.top;
+            path = `M ${x} ${y1} L ${x} ${y2}`;
+        } else if (type === 'left-to-right') {
+            const y = from.y;
+            const x1 = from.right;
+            const x2 = to.left;
+            path = `M ${x1} ${y} L ${x2} ${y}`;
+        } else if (type === 'right-to-left') {
+            const y = from.y;
+            const x1 = from.left;
+            const x2 = to.right;
+            path = `M ${x1} ${y} L ${x2} ${y}`;
+        } else if (type === 'L-right-down') {
+            // Go right from source, then down to target
+            const x1 = from.right;
+            const x2 = to.x;
+            const y1 = from.y;
+            const y2 = to.top;
+            path = `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`;
+        } else if (type === 'L-down-right') {
+            const x1 = from.x;
+            const x2 = to.left;
+            const y1 = from.bottom;
+            const y2 = to.y;
+            path = `M ${x1} ${y1} L ${x1} ${y2} L ${x2} ${y2}`;
+        } else if (type === 'L-left-down') {
+            const x1 = from.left;
+            const x2 = to.x;
+            const y1 = from.y;
+            const y2 = to.top;
+            path = `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`;
+        } else if (type === 'L-down-left') {
+            const x1 = from.x;
+            const x2 = to.right;
+            const y1 = from.bottom;
+            const y2 = to.y;
+            path = `M ${x1} ${y1} L ${x1} ${y2} L ${x2} ${y2}`;
+        } else if (type === 'custom') {
+            path = options.path(from, to);
+        }
+
+        const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        pathEl.setAttribute('d', path);
+        pathEl.setAttribute('stroke', '#333');
+        pathEl.setAttribute('stroke-width', '2');
+        pathEl.setAttribute('fill', 'none');
+        pathEl.setAttribute('marker-end', 'url(#arrowhead)');
+        svg.appendChild(pathEl);
+    }
+
+    function drawAllArrows() {
+        const svg = document.getElementById('arrowsSvg');
+        // Clear existing
+        svg.querySelectorAll('path').forEach(p => p.remove());
+
+        // 1. Start → Registrasi
+        drawArrow('n-start', 'n-registrasi', { type: 'straight-down' });
+
+        // 2. Registrasi → Input Biodata
+        drawArrow('n-registrasi', 'n-input', { type: 'straight-down' });
+
+        // 3. Input Biodata → Verifikasi (cross lane)
+        drawArrow('n-input', 'n-verifikasi1', { type: 'L-right-down' });
+
+        // 4. Login Admin → Verifikasi
+        drawArrow('n-login-admin', 'n-verifikasi1', { type: 'straight-down' });
+
+        // 5. Verifikasi → Decision
+        drawArrow('n-verifikasi1', 'n-decision1', { type: 'straight-down' });
+
+        // 6. Decision → Ditolak (Tidak - left)
+        drawArrow('n-decision1', 'n-ditolak', { type: 'L-left-down' });
+
+        // 7. Decision → Diterima (Ya - down)
+        drawArrow('n-decision1', 'n-diterima', { type: 'straight-down' });
+
+        // 8. Diterima → Cek Pengumuman
+        drawArrow('n-diterima', 'n-cek-pengumuman', { type: 'straight-down' });
+
+        // 9. Cek Pengumuman → Menunggu (Belum - left)
+        drawArrow('n-cek-pengumuman', 'n-menunggu', { type: 'L-left-down' });
+
+        // 10. Cek Pengumuman → Pengumuman Lulus (Sudah - down)
+        drawArrow('n-cek-pengumuman', 'n-pengumuman-lulus', { type: 'straight-down' });
+
+        // 11. Pengumuman Lulus → Daftar Ulang (cross lane left)
+        drawArrow('n-pengumuman-lulus', 'n-daftar-ulang', { type: 'L-left-down' });
+
+        // 12. Daftar Ulang → Verifikasi DU (cross lane right)
+        drawArrow('n-daftar-ulang', 'n-verifikasi-du', { type: 'L-right-down' });
+
+        // 13. Verifikasi DU → Decision DU
+        drawArrow('n-verifikasi-du', 'n-decision-du', { type: 'straight-down' });
+
+        // 14. Decision DU → Revisi DU (Tidak - left)
+        drawArrow('n-decision-du', 'n-revisi-du', { type: 'L-left-down' });
+
+        // 15. Decision DU → Lanjut Bayar (Ya - down)
+        drawArrow('n-decision-du', 'n-lanjut-bayar', { type: 'straight-down' });
+
+        // 16. Lanjut Bayar → Bayar (cross lane left)
+        drawArrow('n-lanjut-bayar', 'n-bayar', { type: 'L-left-down' });
+
+        // 17. Bayar → Verifikasi Bayar (cross to bendahara)
+        drawArrow('n-bayar', 'n-verifikasi-bayar', { type: 'L-right-down' });
+
+        // 18. Login Bendahara → Verifikasi Bayar
+        drawArrow('n-login-bendahara', 'n-verifikasi-bayar', { type: 'straight-down' });
+
+        // 19. Verifikasi Bayar → Decision Bayar
+        drawArrow('n-verifikasi-bayar', 'n-decision-bayar', { type: 'straight-down' });
+
+        // 20. Decision Bayar → Aktif (Ya - left to admin)
+        drawArrow('n-decision-bayar', 'n-aktif', { type: 'L-left-down' });
+
+        // 21. Aktif → Cetak (cross to siswa)
+        drawArrow('n-aktif', 'n-cetak', { type: 'L-left-down' });
+
+        // 22. Cetak → End
+        drawArrow('n-cetak', 'n-end', { type: 'straight-down' });
+
+        // 23. Revisi DU → loop back to Daftar Ulang (up arrow)
+        const revisi = getCenter(document.getElementById('n-revisi-du'));
+        const daftarUlang = getCenter(document.getElementById('n-daftar-ulang'));
+        const loopPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const loopX = revisi.left - 15;
+        loopPath.setAttribute('d', `M ${revisi.left} ${revisi.y} L ${loopX} ${revisi.y} L ${loopX} ${daftarUlang.y} L ${daftarUlang.left} ${daftarUlang.y}`);
+        loopPath.setAttribute('stroke', '#333');
+        loopPath.setAttribute('stroke-width', '2');
+        loopPath.setAttribute('fill', 'none');
+        loopPath.setAttribute('stroke-dasharray', '6,3');
+        loopPath.setAttribute('marker-end', 'url(#arrowhead)');
+        svg.appendChild(loopPath);
+    }
+
+    // Draw on load and resize
+    window.addEventListener('load', () => {
+        setTimeout(drawAllArrows, 100);
+    });
+    window.addEventListener('resize', drawAllArrows);
+</script>
+
+</body>
+</html>

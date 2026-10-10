@@ -1,0 +1,30 @@
+﻿
+FullName                                                                                                               
+--------                                                                                                               
+C:\sistem PPDB\storage\app\public\berkas                                                                               
+C:\sistem PPDB\storage\app\public\images                                                                               
+C:\sistem PPDB\storage\app\public\.gitignore                                                                           
+C:\sistem PPDB\storage\app\public\berkas\foto                                                                          
+C:\sistem PPDB\storage\app\public\berkas\ijazah                                                                        
+C:\sistem PPDB\storage\app\public\berkas\kk                                                                            
+C:\sistem PPDB\storage\app\public\berkas\foto\ILDF0RuFSaufrvPWEFjROLty8I75nRDE1O82kcun.jpg                             
+C:\sistem PPDB\storage\app\public\berkas\ijazah\gPJg5hlgssGrCTB1o7JcwJF16USIB0NZNIUqIdU8.jpg                           
+C:\sistem PPDB\storage\app\public\berkas\kk\isPqSiX0vuSvCBSgNsmfdaYssZlYUW4fFA8vjv21.jpg                               
+C:\sistem PPDB\storage\app\public\images\foto kepsek.jpeg                                                              
+C:\sistem PPDB\storage\app\public\images\Juara 2 Bulu Tangkis U-15 Putri PORDES Selomanik 2025.jpeg                    
+C:\sistem PPDB\storage\app\public\images\Juara 2 Futsal Ajang Festival Santri Muhammadiyah Tingkat Kabupaten.jpeg      
+C:\sistem PPDB\storage\app\public\images\Juara 3 Pidato Bahasa Indonesia Ajang Festival Santri Muhammadiyah Tingkat ...
+C:\sistem PPDB\storage\app\public\images\Juara 3 Tahfidz Qur’an Ajang Festival Santri Muhammadiyah Tingkat Kabupaten...
+C:\sistem PPDB\storage\app\public\images\kegiatan piket siswa.jpeg                                                     
+C:\sistem PPDB\storage\app\public\images\kegiatan upacara rutin.jpeg                                                   
+C:\sistem PPDB\storage\app\public\images\logo.png                                                                      
+C:\sistem PPDB\storage\app\public\images\ngaji bersama.jpeg                                                            
+C:\sistem PPDB\storage\app\public\images\profil sekolah.jpeg                                                           
+C:\sistem PPDB\storage\app\public\images\senam indonesia sehat.jpeg                                                    
+C:\sistem PPDB\storage\app\public\images\sholat berjamaah.jpeg                                                         
+C:\sistem PPDB\storage\app\public\images\struktur organisasi.jpeg                                                      
+C:\sistem PPDB\storage\app\public\images\tapak suci.jpeg                                                               
+C:\sistem PPDB\storage\app\public\images\tilawah.jpeg                                                                  
+C:\sistem PPDB\storage\app\public\images\video grafi.jpeg                                                              
+
+

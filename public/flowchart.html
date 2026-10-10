@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart Sistem PPDB - SMP Muhammadiyah Kaliwiro</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #e94560;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #e94560, #0f3460, #53d8fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .hero p { color: #8892b0; font-size: 1.1rem; }
+        .nav-bar {
+            background: #1a1a2e;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2a4a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .nav-bar a {
+            color: #8892b0;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            background: #16213e;
+            border: 1px solid #2a2a4a;
+        }
+        .nav-bar a:hover {
+            background: #e94560;
+            color: #fff;
+            border-color: #e94560;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .diagram-section {
+            margin-bottom: 60px;
+            background: #1a1a2e;
+            border-radius: 16px;
+            border: 1px solid #2a2a4a;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .diagram-section:hover { transform: translateY(-2px); }
+        .section-header {
+            padding: 24px 30px;
+            background: linear-gradient(135deg, #16213e, #1a1a2e);
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #53d8fb;
+        }
+        .section-header p { color: #8892b0; margin-top: 6px; font-size: 0.9rem; }
+        .diagram-body {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            background: #12121f;
+        }
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .mermaid svg { max-width: 100%; height: auto; }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .badge-blue { background: #0f3460; color: #53d8fb; }
+        .badge-red { background: #3d1228; color: #e94560; }
+        .badge-green { background: #0d3320; color: #2ecc71; }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            border-top: 1px solid #2a2a4a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📊 Flowchart Sistem PPDB</h1>
+    <p>SMP Muhammadiyah Kaliwiro — Dokumentasi Visual Lengkap</p>
+</div>
+
+<div class="nav-bar">
+    <a href="#d1">1. Arsitektur</a>
+    <a href="#d2">2. Autentikasi</a>
+    <a href="#d3">3. Pendaftaran</a>
+    <a href="#d4">4. Verifikasi</a>
+    <a href="#d5">5. Pembayaran</a>
+    <a href="#d6">6. Bendahara</a>
+    <a href="#d7">7. Kelas</a>
+    <a href="#d8">8. Fitur Admin</a>
+    <a href="#d9">9. ERD</a>
+    <a href="#d10">10. End-to-End</a>
+</div>
+
+<div class="container">
+
+<!-- 1. Arsitektur -->
+<div class="diagram-section" id="d1">
+    <div class="section-header">
+        <h2>1. Arsitektur Sistem Keseluruhan</h2>
+        <p><span class="badge badge-blue">Overview</span> Gambaran umum modul dan role pengguna</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+graph TB
+    subgraph PUBLIC["🌐 Halaman Publik"]
+        B["Beranda"]
+        PR["Profil Sekolah"]
+        KG["Kegiatan"]
+        PS["Prestasi"]
+        BR["Berita"]
+        IF["Informasi PPDB"]
+    end
+    subgraph AUTH["🔐 Autentikasi"]
+        LG["Login Manual"]
+        RG["Register Akun"]
+        GO["Google OAuth"]
+    end
+    subgraph SISWA["🎓 Panel Siswa"]
+        SD["Dashboard"]
+        FP["Form Pendaftaran"]
+        PY["Pembayaran"]
+        CT["Cetak PDF"]
+        MS["Pesan"]
+    end
+    subgraph BENDAHARA["💰 Panel Bendahara"]
+        BD["Dashboard Keuangan"]
+        VP["Verifikasi Bayar"]
+        RI["Rincian Biaya"]
+        SK2["Setting Keuangan"]
+    end
+    subgraph ADMIN["⚙️ Panel Admin"]
+        AD["Dashboard Statistik"]
+        DS["Data Pendaftar"]
+        VS["Verifikasi"]
+        KL["Plotting Kelas"]
+        CMS["CMS Konten"]
+        FAQ["FAQ"]
+        AM["Pesan"]
+        ST["Pengaturan"]
+    end
+    PUBLIC --> AUTH
+    AUTH -->|role: siswa| SISWA
+    AUTH -->|role: bendahara| BENDAHARA
+    AUTH -->|role: admin| ADMIN
+        </pre>
+    </div>
+</div>
+
+<!-- 2. Autentikasi -->
+<div class="diagram-section" id="d2">
+    <div class="section-header">
+        <h2>2. Alur Autentikasi & Role Redirect</h2>
+        <p><span class="badge badge-red">Security</span> Login manual, Google OAuth, dan routing berdasarkan role</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Pengunjung"]) --> B{"Sudah Login?"}
+    B -->|Tidak| C["Halaman Publik"]
+    C --> D{"Ingin Mendaftar?"}
+    D -->|Ya| E["Halaman Register"]
+    D -->|Sudah punya akun| F["Halaman Login"]
+    E --> G["Isi: Nama, Email, No HP, Password"]
+    G --> H["Akun Dibuat - Role: Siswa"]
+    H --> I["Auto Login"]
+    F --> J{"Metode Login"}
+    J -->|Email + Password| K["Validasi Kredensial"]
+    J -->|Google OAuth| L["Redirect ke Google"]
+    L --> M["Google Callback"]
+    M --> N{"Email terdaftar?"}
+    N -->|Ya| O["Update Google Token"]
+    N -->|Tidak| P["Buat Akun Baru"]
+    O --> I
+    P --> I
+    K -->|Berhasil| I
+    I --> Q{"Cek Role"}
+    Q -->|admin| R["Admin Dashboard"]
+    Q -->|bendahara| S["Bendahara Dashboard"]
+    Q -->|siswa| T["Siswa Dashboard"]
+    K -->|Gagal| U["Error"] --> F
+    style R fill:#e74c3c,color:#fff
+    style S fill:#f39c12,color:#fff
+    style T fill:#2ecc71,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 3. Pendaftaran -->
+<div class="diagram-section" id="d3">
+    <div class="section-header">
+        <h2>3. Alur Pendaftaran Siswa</h2>
+        <p><span class="badge badge-green">Core Flow</span> Dari login hingga submit form pendaftaran lengkap</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Siswa Login"]) --> B["Dashboard"]
+    B --> C{"Sudah Isi Biodata?"}
+    C -->|Ya| D["Lihat Status"]
+    C -->|Tidak| E["Klik Pendaftaran"]
+    E --> F{"Cek Jadwal Gelombang"}
+    F -->|Gel 1 Aktif| G["Gelombang = 1"]
+    F -->|Gel 2 Aktif| H["Gelombang = 2"]
+    F -->|Diluar Jadwal| I["Pendaftaran Ditutup"]
+    G --> J["Form Pendaftaran"]
+    H --> J
+    J --> K["Data Pribadi: Nama, NISN, TTL, JK, Agama, Alamat"]
+    K --> L["Data Ortu: Nama Ayah-Ibu, Pekerjaan, No HP"]
+    L --> M["Akademik: Asal Sekolah, Jalur, Nilai, Prestasi"]
+    M --> N["Upload: Foto, KK, Ijazah, Rapor, Prestasi"]
+    N --> O["Centang Persetujuan"]
+    O --> P["Submit"]
+    P --> Q{"Cek Kuota"}
+    Q -->|Tersedia| R["Status: Menunggu"]
+    Q -->|Penuh| S["Status: Cadangan"]
+    R --> T["Generate No: PPDB-2026-XXXX"]
+    S --> T
+    T --> U["Email Konfirmasi"]
+    U --> D
+    D --> W{"Status?"}
+    W -->|Menunggu| X["Menunggu Verifikasi"]
+    W -->|Diterima| Y["Akses Bayar + Cetak"]
+    W -->|Ditolak| Z["Ditolak"]
+    W -->|Cadangan| AA["Daftar Cadangan"]
+    style I fill:#e74c3c,color:#fff
+    style Y fill:#2ecc71,color:#fff
+    style Z fill:#e74c3c,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 4. Verifikasi Admin -->
+<div class="diagram-section" id="d4">
+    <div class="section-header">
+        <h2>4. Alur Verifikasi Pendaftaran oleh Admin</h2>
+        <p><span class="badge badge-red">Admin</span> Review data siswa dan pengambilan keputusan</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Admin Login"]) --> B["Dashboard"]
+    B --> C["Menu Data Pendaftar"]
+    C --> D["Filter: Jalur / Status / Pencarian"]
+    D --> E["Daftar Pendaftar"]
+    E --> F["Klik Detail Siswa"]
+    F --> G["Review: Biodata, Ortu, Dokumen, Nilai"]
+    G --> H{"Keputusan"}
+    H -->|Terima| I["Status: Diterima"]
+    H -->|Tolak| J["Status: Ditolak + Catatan"]
+    H -->|Cadangan| K["Status: Cadangan"]
+    H -->|Pending| L["Status: Menunggu"]
+    I --> M["Siswa Bisa Daftar Ulang"]
+    J --> N["Siswa Lihat Penolakan"]
+    M --> O["Export CSV / PDF"]
+    style I fill:#2ecc71,color:#fff
+    style J fill:#e74c3c,color:#fff
+    style K fill:#f39c12,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 5. Pembayaran -->
+<div class="diagram-section" id="d5">
+    <div class="section-header">
+        <h2>5. Alur Pembayaran Daftar Ulang</h2>
+        <p><span class="badge badge-green">Payment</span> Multi-metode: Transfer, QRIS, Midtrans, Simulator</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Siswa Diterima"]) --> B["Menu Pembayaran"]
+    B --> C["Lihat Rincian Biaya per Jalur"]
+    C --> D{"Pilih Metode"}
+    D -->|Transfer Bank| E["Isi Bank, Rekening, Upload Bukti"]
+    D -->|QRIS| F["Upload Bukti QRIS"]
+    D -->|Tunai| G["Upload Bukti Tunai"]
+    D -->|Midtrans| H["Snap Token - Gateway Otomatis"]
+    D -->|Simulator| S1["BSI / QRIS Simulator"]
+    E --> I["Status: Menunggu Verifikasi"]
+    F --> I
+    G --> I
+    H --> J{"Proses Midtrans"}
+    J -->|Settlement| K["Lunas Otomatis via Webhook"]
+    J -->|Pending| L["Menunggu"]
+    J -->|Deny/Expire| M2["Ditolak"]
+    S1 --> S2["Lunas Instan"]
+    I --> N{"Verifikasi Bendahara/Admin"}
+    N -->|Lunas| O["Status: Lunas"]
+    N -->|Tolak| P["Status: Ditolak"]
+    K --> Q["Email Notifikasi"]
+    O --> Q
+    Q --> R["Cetak Kuitansi"]
+    style K fill:#2ecc71,color:#fff
+    style O fill:#2ecc71,color:#fff
+    style P fill:#e74c3c,color:#fff
+    style S2 fill:#3498db,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 6. Bendahara -->
+<div class="diagram-section" id="d6">
+    <div class="section-header">
+        <h2>6. Alur Kerja Bendahara</h2>
+        <p><span class="badge badge-blue">Keuangan</span> Dashboard, verifikasi, rincian biaya, export</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Bendahara Login"]) --> B["Dashboard Keuangan"]
+    B --> C["Statistik: Diterima, Lunas, Pending, Belum Bayar, Total Dana"]
+    B --> D["Chart: Tren 7 Hari + Metode Bayar"]
+    B --> E["Menu Verifikasi"]
+    E --> F["Filter: Status / Jalur / Nama"]
+    F --> G["Daftar Siswa + Status Bayar"]
+    G --> H["Review Bukti Bayar"]
+    H --> I{"Keputusan"}
+    I -->|Lunas| J["Verifikasi Lunas"]
+    I -->|Tolak| K["Tolak + Catatan"]
+    B --> L["Menu Rincian Biaya"]
+    L --> M["CRUD: Nama, Nominal, Jalur, Aktif/Nonaktif"]
+    B --> N["Menu Setting Keuangan"]
+    N --> O["Rekening, Bank, Instruksi"]
+    B --> P["Export: CSV + PDF Belum Lunas"]
+    style J fill:#2ecc71,color:#fff
+    style K fill:#e74c3c,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 7. Kelas -->
+<div class="diagram-section" id="d7">
+    <div class="section-header">
+        <h2>7. Alur Pembagian Kelas (Plotting)</h2>
+        <p><span class="badge badge-green">Admin</span> Penugasan siswa ke kelas setelah pembayaran lunas</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["Admin"]) --> B["Menu Pembagian Kelas"]
+    B --> C["Siswa Eligible: Diterima + Lunas + Belum Ada Kelas"]
+    C --> D["Pilih Siswa via Checkbox"]
+    D --> E["Input Nama Kelas: VII-A, VII-B, dst"]
+    E --> F["Klik Tugaskan"]
+    F --> G["Siswa Masuk ke Kelas"]
+    B --> H["Daftar Kelas Terisi"]
+    H --> I{"Aksi"}
+    I -->|Keluarkan| J["Siswa Kembali ke Unassigned"]
+    I -->|Export| K["Download PDF Daftar Kelas"]
+    style G fill:#2ecc71,color:#fff
+    style K fill:#3498db,color:#fff
+        </pre>
+    </div>
+</div>
+
+<!-- 8. Fitur Admin -->
+<div class="diagram-section" id="d8">
+    <div class="section-header">
+        <h2>8. Fitur Tambahan Admin</h2>
+        <p><span class="badge badge-red">Admin</span> CMS, FAQ, Pesan, dan Pengaturan Sistem</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart LR
+    subgraph CMS["📝 CMS Konten"]
+        C1["Buat Konten"]
+        C2["Edit Konten"]
+        C3["Hapus Konten"]
+        C4["Tipe: hero, profil, kegiatan, prestasi, berita"]
+    end
+    subgraph FAQ_M["❓ FAQ"]
+        F1["Tambah FAQ"]
+        F2["Edit FAQ"]
+        F3["Hapus FAQ"]
+        F4["Atur Urutan"]
+    end
+    subgraph MSG["💬 Pesan"]
+        M1["Lihat Inbox"]
+        M2["Baca Pesan"]
+        M3["Balas Pesan"]
+        M4["Tandai Dibaca"]
+    end
+    subgraph SET["⚙️ Pengaturan"]
+        S1["Jadwal Gel 1 dan 2"]
+        S2["Kuota per Gelombang"]
+        S3["Tanggal Pengumuman"]
+        S4["Logo Sekolah"]
+        S5["Reset Setting"]
+    end
+        </pre>
+    </div>
+</div>
+
+<!-- 9. ERD -->
+<div class="diagram-section" id="d9">
+    <div class="section-header">
+        <h2>9. Entity Relationship Diagram (Database)</h2>
+        <p><span class="badge badge-blue">Database</span> Struktur tabel dan relasi antar entitas</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+erDiagram
+    USERS {
+        int id PK
+        string name
+        string email
+        string password
+        string no_hp
+        string role
+        string google_id
+        text google_token
+    }
+    STUDENTS {
+        int id PK
+        int user_id FK
+        string nomor_pendaftaran
+        string nama_lengkap
+        string nisn
+        date tanggal_lahir
+        string jenis_kelamin
+        string alamat
+        string asal_sekolah
+        string jalur_pendaftaran
+        decimal nilai_rapor
+        string status
+        string kelas
+        string gelombang
+    }
+    PAYMENTS {
+        int id PK
+        int student_id FK
+        string metode_pembayaran
+        decimal jumlah_bayar
+        date tanggal_bayar
+        string bukti_transfer
+        string status
+        int verified_by FK
+        string snap_token
+        string midtrans_order_id
+    }
+    PAYMENT_ITEMS {
+        int id PK
+        string name
+        decimal amount
+        string jalur
+        boolean is_active
+    }
+    MESSAGES {
+        int id PK
+        int student_id FK
+        text message
+        string sender
+        boolean is_read
+    }
+    CONTENTS {
+        int id PK
+        string type
+        string title
+        text body
+        boolean is_active
+    }
+    SETTINGS {
+        int id PK
+        string key
+        string value
+        string type
+    }
+    FAQS {
+        int id PK
+        string question
+        text answer
+        int order_num
+    }
+    USERS ||--o| STUDENTS : "has one"
+    STUDENTS ||--o{ PAYMENTS : "has many"
+    STUDENTS ||--o{ MESSAGES : "has many"
+    USERS ||--o{ PAYMENTS : "verified by"
+        </pre>
+    </div>
+</div>
+
+<!-- 10. End-to-End -->
+<div class="diagram-section" id="d10">
+    <div class="section-header">
+        <h2>10. Alur Lengkap End-to-End</h2>
+        <p><span class="badge badge-green">Overview</span> Keseluruhan proses dari awal hingga plotting kelas</p>
+    </div>
+    <div class="diagram-body">
+        <pre class="mermaid">
+flowchart TD
+    A(["🌐 Pengunjung"]) -->|Buka Website| B["Landing Page PPDB"]
+    B -->|Lihat Info| C["Halaman Publik"]
+    B -->|Daftar| D["Register / Google OAuth"]
+    D --> E["Login ke Dashboard"]
+    E -->|Step 1| F["Isi Form + Upload Dokumen"]
+    F --> G["Email Konfirmasi - Status: Menunggu"]
+    G -->|Admin Review| H{"Keputusan Admin"}
+    H -->|Diterima| I["Status: Diterima"]
+    H -->|Ditolak| J["Status: Ditolak"]
+    H -->|Cadangan| K["Status: Cadangan"]
+    I -->|Step 2| L["Bayar: Transfer / QRIS / Midtrans"]
+    L --> M["Upload Bukti / Bayar Online"]
+    M -->|Bendahara Review| N{"Verifikasi Bayar"}
+    N -->|Lunas| O["Email Lunas + Cetak Kuitansi"]
+    N -->|Ditolak| P["Bayar Ulang"]
+    O -->|Step 3| Q["Admin Plotting Kelas"]
+    Q --> R["Export Daftar Kelas PDF - SELESAI"]
+    style I fill:#2ecc71,color:#fff
+    style J fill:#e74c3c,color:#fff
+    style O fill:#2ecc71,color:#fff
+    style R fill:#9b59b6,color:#fff
+        </pre>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    <p>Flowchart Sistem PPDB &copy; 2026 — SMP Muhammadiyah Kaliwiro</p>
+</footer>
+
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+            primaryColor: '#1a1a2e',
+            primaryTextColor: '#e0e0e0',
+            primaryBorderColor: '#53d8fb',
+            lineColor: '#53d8fb',
+            secondaryColor: '#16213e',
+            tertiaryColor: '#0f3460',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '14px'
+        },
+        flowchart: { htmlLabels: true, curve: 'basis', padding: 15 },
+        er: { fontSize: 12 }
+    });
+</script>
+</body>
+</html>

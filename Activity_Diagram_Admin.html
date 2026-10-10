@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Diagram Admin</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; margin-top: 50px; background-color: #ffffff; }
+        .diagram-container { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Activity Diagram: Admin (Dari Login s/d Selesai Plotting Kelas)</h2>
+    <div class="diagram-container">
+        <svg width="800" height="880" viewBox="0 0 800 880" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <rect x="0" y="0" width="800" height="880" fill="none" stroke="black" stroke-width="2"/>
+            <line x1="0" y1="60" x2="800" y2="60" stroke="black" stroke-width="2"/>
+            <line x1="400" y1="0" x2="400" y2="880" stroke="black" stroke-width="2"/>
+            
+            <text x="200" y="38" font-size="18" font-weight="bold" text-anchor="middle">Admin</text>
+            <text x="600" y="38" font-size="18" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="black" />
+                </marker>
+            </defs>
+
+            <!-- Nodes -->
+            <circle cx="200" cy="100" r="16" fill="black"/>
+            
+            <rect x="50" y="150" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="175" font-size="14" text-anchor="middle">Melakukan Login ke Sistem</text>
+            
+            <polygon points="600,210 660,240 600,270 540,240" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="245" font-size="14" text-anchor="middle">Login Valid?</text>
+            <text x="590" y="285" font-size="12">Ya</text>
+            <text x="670" y="235" font-size="12">Tidak</text>
+
+            <rect x="450" y="310" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="335" font-size="14" text-anchor="middle">Tampilkan Dashboard Admin</text>
+
+            <rect x="50" y="390" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="415" font-size="14" text-anchor="middle">Pilih Menu &amp; Periksa Berkas Siswa</text>
+
+            <polygon points="600,450 660,480 600,510 540,480" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="485" font-size="14" text-anchor="middle">Memenuhi Syarat?</text>
+            <text x="540" y="525" font-size="12">Ya</text>
+            <text x="670" y="475" font-size="12">Tidak</text>
+
+            <rect x="620" y="550" width="160" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="700" y="575" font-size="14" text-anchor="middle">Update Status Ditolak</text>
+
+            <rect x="420" y="550" width="160" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="500" y="575" font-size="14" text-anchor="middle">Update Status Diterima</text>
+
+            <rect x="50" y="650" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="675" font-size="14" text-anchor="middle">Melakukan Plotting Kelas</text>
+
+            <rect x="450" y="730" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="755" font-size="14" text-anchor="middle">Simpan Data Kelas (Plotting)</text>
+
+            <circle cx="700" cy="630" r="14" fill="white" stroke="black" stroke-width="2"/>
+            <circle cx="700" cy="630" r="8" fill="black"/>
+            
+            <circle cx="600" cy="820" r="14" fill="white" stroke="black" stroke-width="2"/>
+            <circle cx="600" cy="820" r="8" fill="black"/>
+
+            <!-- Arrows -->
+            <line x1="200" y1="116" x2="200" y2="150" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 190 L 200 240 L 540 240" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 660 240 L 750 240 L 750 170 L 350 170" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="600" y1="270" x2="600" y2="310" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 600 350 L 600 410 L 350 410" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 430 L 200 480 L 540 480" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 660 480 L 700 480 L 700 550" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 540 480 L 500 480 L 500 550" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="700" y1="590" x2="700" y2="616" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 500 590 L 500 670 L 350 670" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 690 L 200 750 L 450 750" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="600" y1="770" x2="600" y2="806" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+        </svg>
+    </div>
+</body>
+</html>

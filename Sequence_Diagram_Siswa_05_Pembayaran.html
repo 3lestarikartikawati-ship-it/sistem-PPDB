@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Diagram Siswa - Pembayaran</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; margin-top: 40px; background-color: #ffffff; }
+        .diagram-container { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Sequence Diagram: Calon Siswa (5. Proses Pembayaran via Midtrans)</h2>
+    <div class="diagram-container">
+        <svg width="1050" height="600" viewBox="0 0 1050 600" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="black"/></marker></defs>
+
+            <rect x="60" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="33" font-size="14" font-weight="bold" text-anchor="middle">Calon Siswa</text>
+            <rect x="310" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="33" font-size="14" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="560" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="630" y="33" font-size="14" font-weight="bold" text-anchor="middle">Midtrans Gateway</text>
+            <rect x="810" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="880" y="33" font-size="14" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="45" x2="130" y2="570" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="380" y1="45" x2="380" y2="570" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="630" y1="45" x2="630" y2="570" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="880" y1="45" x2="880" y2="570" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <rect x="60" y="570" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="590" font-size="13" font-weight="bold" text-anchor="middle">Calon Siswa</text>
+            <rect x="310" y="570" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="590" font-size="13" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="560" y="570" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="630" y="590" font-size="13" font-weight="bold" text-anchor="middle">Midtrans Gateway</text>
+            <rect x="810" y="570" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="880" y="590" font-size="13" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="80" x2="380" y2="80" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="255" y="73" font-size="12" text-anchor="middle">1. Akses menu pembayaran</text>
+
+            <line x1="380" y1="120" x2="880" y2="120" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="630" y="113" font-size="12" text-anchor="middle">2. Ambil data tagihan siswa</text>
+
+            <line x1="880" y1="160" x2="380" y2="160" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="630" y="153" font-size="12" text-anchor="middle">3. Return rincian tagihan</text>
+
+            <line x1="380" y1="200" x2="130" y2="200" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="193" font-size="12" text-anchor="middle">4. Tampilkan detail tagihan</text>
+
+            <line x1="130" y1="250" x2="380" y2="250" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="255" y="243" font-size="12" text-anchor="middle">5. Klik "Bayar Sekarang"</text>
+
+            <line x1="380" y1="290" x2="630" y2="290" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="505" y="283" font-size="12" text-anchor="middle">6. Request Snap Token</text>
+
+            <line x1="630" y1="330" x2="380" y2="330" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="505" y="323" font-size="12" text-anchor="middle">7. Return Snap Token</text>
+
+            <line x1="380" y1="370" x2="130" y2="370" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="363" font-size="12" text-anchor="middle">8. Menampilkan pop-up Snap Midtrans</text>
+
+            <line x1="130" y1="410" x2="630" y2="410" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="380" y="403" font-size="12" text-anchor="middle">9. Siswa menyelesaikan pembayaran</text>
+
+            <line x1="630" y1="460" x2="380" y2="460" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="505" y="453" font-size="12" text-anchor="middle">10. Webhook (Status: Settlement)</text>
+
+            <line x1="380" y1="500" x2="880" y2="500" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="630" y="493" font-size="12" text-anchor="middle">11. Update status pembayaran = Lunas</text>
+
+            <line x1="380" y1="540" x2="130" y2="540" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="533" font-size="12" text-anchor="middle">12. Tampilkan bukti pembayaran lunas</text>
+        </svg>
+    </div>
+</body>
+</html>
+

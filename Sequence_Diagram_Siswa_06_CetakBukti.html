@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Diagram Siswa - Cetak Bukti</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; margin-top: 40px; background-color: #ffffff; }
+        .diagram-container { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Sequence Diagram: Calon Siswa (6. Cetak Bukti Pendaftaran)</h2>
+    <div class="diagram-container">
+        <svg width="850" height="400" viewBox="0 0 850 400" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="black"/></marker></defs>
+
+            <rect x="60" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="33" font-size="14" font-weight="bold" text-anchor="middle">Calon Siswa</text>
+            <rect x="310" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="33" font-size="14" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="570" y="10" width="140" height="35" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="640" y="33" font-size="14" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="45" x2="130" y2="370" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="380" y1="45" x2="380" y2="370" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="640" y1="45" x2="640" y2="370" stroke="black" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <rect x="60" y="370" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="130" y="390" font-size="13" font-weight="bold" text-anchor="middle">Calon Siswa</text>
+            <rect x="310" y="370" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="380" y="390" font-size="13" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            <rect x="570" y="370" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="640" y="390" font-size="13" font-weight="bold" text-anchor="middle">Database</text>
+
+            <line x1="130" y1="80" x2="380" y2="80" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="255" y="73" font-size="12" text-anchor="middle">1. Klik tombol "Cetak Bukti Pendaftaran"</text>
+
+            <line x1="380" y1="130" x2="640" y2="130" stroke="black" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="510" y="123" font-size="12" text-anchor="middle">2. Ambil data pendaftaran & dokumen</text>
+
+            <line x1="640" y1="180" x2="380" y2="180" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="510" y="173" font-size="12" text-anchor="middle">3. Return data siswa</text>
+
+            <line x1="380" y1="230" x2="380" y2="230" stroke="black" stroke-width="1.5"/>
+            <rect x="310" y="215" width="140" height="30" rx="5" fill="white" stroke="black" stroke-width="1"/>
+            <text x="380" y="235" font-size="12" text-anchor="middle">4. Generate file PDF</text>
+
+            <line x1="380" y1="290" x2="130" y2="290" stroke="black" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <text x="255" y="283" font-size="12" text-anchor="middle">5. Download file PDF</text>
+        </svg>
+    </div>
+</body>
+</html>
+

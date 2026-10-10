@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Diagram - Sistem PPDB</title>
+    <style>
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            padding: 40px; 
+            background-color: #ffffff;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+        .sub {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        svg {
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            font-family: Arial, sans-serif;
+            font-size: 1.15rem;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            width: 950px;
+            text-align: left;
+        }
+        table {
+            width: 950px;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 0.88rem;
+        }
+        table th, table td {
+            border: 1px solid #888;
+            padding: 10px 14px;
+            text-align: left;
+            color: #222;
+            vertical-align: top;
+        }
+        table th {
+            background-color: #e8e8e8;
+            font-weight: bold;
+            text-align: center;
+        }
+        table td:first-child {
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Class Diagram - Sistem PPDB</h1>
+    <p class="sub">SMP Muhammadiyah Kaliwiro</p>
+
+    <svg width="950" height="980" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- ====================================================================== -->
+        <!-- CLASS: User  (top-left)                                                 -->
+        <!-- ====================================================================== -->
+        <g transform="translate(30, 30)">
+            <rect x="0" y="0" width="200" height="200" fill="white" stroke="black" stroke-width="1.5" />
+            <rect x="0" y="0" width="200" height="28" fill="#f0f0f0" stroke="black" stroke-width="1.5" />
+            <text x="100" y="19" text-anchor="middle" font-weight="bold" font-size="14">User</text>
+            <line x1="0" y1="130" x2="200" y2="130" stroke="black" stroke-width="1" />
+
+            <text x="8" y="46" font-size="11.5">+id: int</text>
+            <text x="8" y="61" font-size="11.5">+name: string</text>
+            <text x="8" y="76" font-size="11.5">+email: string</text>
+            <text x="8" y="91" font-size="11.5">+password: string</text>
+            <text x="8" y="106" font-size="11.5">+no_hp: string</text>
+            <text x="8" y="121" font-size="11.5">+role: enum(admin,siswa,bendahara)</text>
+
+            <text x="8" y="148" font-size="11.5">+student()</text>
+            <text x="8" y="163" font-size="11.5">+login()</text>
+            <text x="8" y="178" font-size="11.5">+logout()</text>
+        </g>
+
+        <!-- ====================================================================== -->
+        <!-- CLASS: Student  (center)                                                -->
+        <!-- ====================================================================== -->
+        <g transform="translate(30, 310)">
+            <rect x="0" y="0" width="260" height="310" fill="white" stroke="black" stroke-width="1.5" />
+            <rect x="0" y="0" width="260" height="28" fill="#f0f0f0" stroke="black" stroke-width="1.5" />
+            <text x="130" y="19" text-anchor="middle" font-weight="bold" font-size="14">Student</text>
+            <line x1="0" y1="218" x2="260" y2="218" stroke="black" stroke-width="1" />
+
+            <text x="8" y="46" font-size="11.5">+id: int</text>
+            <text x="8" y="61" font-size="11.5">+user_id: int (FK)</text>
+            <text x="8" y="76" font-size="11.5">+nomor_pendaftaran: string</text>
+            <text x="8" y="91" font-size="11.5">+nisn: string</text>
+            <text x="8" y="106" font-size="11.5">+nama_lengkap: string</text>
+            <text x="8" y="121" font-size="11.5">+tanggal_lahir: date</text>
+            <text x="8" y="136" font-size="11.5">+jenis_kelamin: enum(L,P)</text>
+            <text x="8" y="151" font-size="11.5">+asal_sekolah: string</text>
+            <text x="8" y="166" font-size="11.5">+alamat: text</text>
+            <text x="8" y="181" font-size="11.5">+status: enum(menunggu,diterima,ditolak)</text>
+            <text x="8" y="196" font-size="11.5">+gelombang: string</text>
+            <text x="8" y="211" font-size="11.5">+kelas: int</text>
+
+            <text x="8" y="236" font-size="11.5">+user()</text>
+            <text x="8" y="251" font-size="11.5">+messages()</text>
+            <text x="8" y="266" font-size="11.5">+studentPayments()</text>
+            <text x="8" y="281" font-size="11.5">+payments()</text>
+            <text x="8" y="296" font-size="11.5">+getTotalTargetAttribute()</text>
+        </g>
+
+        <!-- ====================================================================== -->
+        <!-- CLASS: StudentPayment  (right, top)                                     -->
+        <!-- Bendahara input manual: jenis + nominal                                 -->
+        <!-- ====================================================================== -->
+        <g transform="translate(430, 30)">
+            <rect x="0" y="0" width="250" height="195" fill="white" stroke="black" stroke-width="1.5" />
+            <rect x="0" y="0" width="250" height="28" fill="#f0f0f0" stroke="black" stroke-width="1.5" />
+            <text x="125" y="19" text-anchor="middle" font-weight="bold" font-size="14">StudentPayment</text>
+            <line x1="0" y1="135" x2="250" y2="135" stroke="black" stroke-width="1" />
+
+            <text x="8" y="46" font-size="11.5">+id: int</text>
+            <text x="8" y="61" font-size="11.5">+student_id: int (FK)</text>
+            <text x="8" y="76" font-size="11.5">+type: enum(infak,lk,seragam)</text>
+            <text x="8" y="91" font-size="11.5">+amount: decimal(12,2)</text>
+            <text x="8" y="106" font-size="11.5">+paid_at: date</text>
+            <text x="8" y="121" font-size="11.5">+notes: string</text>
+            <text x="8" y="131" font-size="11.5">+recorded_by: int (FK → users)</text>
+
+            <text x="8" y="153" font-size="11.5">+student()</text>
+            <text x="8" y="168" font-size="11.5">+recorder()</text>
+        </g>
+
+        <!-- ====================================================================== -->
+        <!-- CLASS: Message  (right, center)                                         -->
+        <!-- ====================================================================== -->
+        <g transform="translate(430, 310)">
+            <rect x="0" y="0" width="220" height="165" fill="white" stroke="black" stroke-width="1.5" />
+            <rect x="0" y="0" width="220" height="28" fill="#f0f0f0" stroke="black" stroke-width="1.5" />
+            <text x="110" y="19" text-anchor="middle" font-weight="bold" font-size="14">Message</text>
+            <line x1="0" y1="118" x2="220" y2="118" stroke="black" stroke-width="1" />
+
+            <text x="8" y="46" font-size="11.5">+id: int</text>
+            <text x="8" y="61" font-size="11.5">+student_id: int (FK)</text>
+            <text x="8" y="76" font-size="11.5">+message: text</text>
+            <text x="8" y="91" font-size="11.5">+sender: enum(student,admin)</text>
+            <text x="8" y="106" font-size="11.5">+is_read: boolean</text>
+
+            <text x="8" y="136" font-size="11.5">+student()</text>
+        </g>
+
+
+
+        <!-- ====================================================================== -->
+        <!-- CLASS: Payment (bottom-center)                                          -->
+        <!-- ====================================================================== -->
+        <g transform="translate(370, 700)">
+            <rect x="0" y="0" width="250" height="195" fill="white" stroke="black" stroke-width="1.5" />
+            <rect x="0" y="0" width="250" height="28" fill="#f0f0f0" stroke="black" stroke-width="1.5" />
+            <text x="125" y="19" text-anchor="middle" font-weight="bold" font-size="14">Payment</text>
+            <line x1="0" y1="130" x2="250" y2="130" stroke="black" stroke-width="1" />
+
+            <text x="8" y="46" font-size="11.5">+id: int</text>
+            <text x="8" y="61" font-size="11.5">+student_id: int (FK, unique)</text>
+            <text x="8" y="76" font-size="11.5">+jumlah_bayar: decimal(12,2)</text>
+            <text x="8" y="91" font-size="11.5">+tanggal_bayar: date</text>
+            <text x="8" y="106" font-size="11.5">+status: enum(menunggu,lunas,ditolak)</text>
+            <text x="8" y="121" font-size="11.5">+catatan: text</text>
+
+            <text x="8" y="148" font-size="11.5">+student()</text>
+            <text x="8" y="163" font-size="11.5">+verifiedBy()</text>
+        </g>
+
+
+        <!-- ====================================================================== -->
+        <!--                        RELATIONSHIPS                                   -->
+        <!-- ====================================================================== -->
+
+        <!-- ─── User 1──1 Student (vertical) ─── -->
+        <line x1="130" y1="230" x2="130" y2="310" stroke="black" stroke-width="1.5" />
+        <!-- Diamond (composition) at Student end -->
+        <polygon points="130,310 123,300 130,290 137,300" fill="black" stroke="black" stroke-width="1" />
+        <text x="140" y="250" font-size="11" font-style="italic">1</text>
+        <text x="140" y="306" font-size="11" font-style="italic">1</text>
+
+        <!-- ─── User 1──0..* StudentPayment (horizontal, "recorded_by") ─── -->
+        <line x1="230" y1="130" x2="430" y2="130" stroke="black" stroke-width="1.5" />
+        <text x="240" y="122" font-size="11" font-style="italic">1</text>
+        <text x="400" y="122" font-size="11" font-style="italic">0..*</text>
+        <text x="310" y="122" font-size="10" font-style="italic" fill="#555">recorded_by</text>
+
+        <!-- ─── Student 1──0..* StudentPayment (corner path) ─── -->
+        <polyline points="290,420 360,420 360,180 430,180" fill="none" stroke="black" stroke-width="1.5" />
+        <text x="295" y="415" font-size="11" font-style="italic">1</text>
+        <text x="400" y="175" font-size="11" font-style="italic">0..*</text>
+
+        <!-- ─── Student 1──0..* Message (horizontal) ─── -->
+        <line x1="290" y1="380" x2="430" y2="380" stroke="black" stroke-width="1.5" />
+        <text x="295" y="375" font-size="11" font-style="italic">1</text>
+        <text x="400" y="375" font-size="11" font-style="italic">0..*</text>
+
+        <!-- ─── Student 1──0..* Payment (corner path going down) ─── -->
+        <polyline points="160,620 160,800 370,800" fill="none" stroke="black" stroke-width="1.5" />
+        <text x="165" y="635" font-size="11" font-style="italic">1</text>
+        <text x="345" y="795" font-size="11" font-style="italic">0..*</text>
+
+    </svg>
+
+    <!-- ====== DESKRIPSI CLASS ====== -->
+    <h2>Deskripsi Class</h2>
+    <div style="width:950px; font-size:0.92rem; line-height:1.8; text-align:justify;">
+        <p style="margin-bottom:12px; text-indent:40px;">
+            Class diagram di atas menggambarkan struktur kelas pada Sistem Informasi PPDB SMP Muhammadiyah Kaliwiro. Sistem ini terdiri dari 5 kelas utama yang saling berelasi. Kelas <b>User</b> menyimpan data akun seluruh pengguna sistem dengan atribut <i>role</i> yang membedakan hak akses antara admin, siswa, dan bendahara. Kelas <b>Student</b> menyimpan data lengkap calon peserta didik baru meliputi identitas diri (NISN, nama lengkap, tanggal lahir, jenis kelamin), data orang tua, asal sekolah, berkas dokumen, serta status pendaftaran (menunggu, diterima, atau ditolak). Nomor pendaftaran di-<i>generate</i> secara otomatis oleh sistem.
+        </p>
+        <p style="margin-bottom:12px; text-indent:40px;">
+            Kelas <b>StudentPayment</b> menyimpan data pembayaran siswa yang diinput secara manual oleh Bendahara. Dalam sistem ini, siswa tidak melakukan pembayaran secara transfer maupun online, melainkan membayar langsung secara tunai kepada Bendahara, kemudian Bendahara memilih jenis pembayaran (infak, LK, atau seragam) dan memasukkan nominal pembayaran ke dalam sistem. Setiap record pembayaran mencatat nominal (<i>amount</i>), tanggal bayar (<i>paid_at</i>), catatan (<i>notes</i>), serta siapa Bendahara yang memasukkan data tersebut melalui kolom <i>recorded_by</i>. Kelas <b>Payment</b> menyimpan data rekap/rangkuman pembayaran per siswa yang memuat jumlah bayar, tanggal bayar, status pembayaran, serta catatan tambahan.
+        </p>
+        <p style="margin-bottom:12px; text-indent:40px;">
+            Kelas <b>Message</b> menyimpan pesan komunikasi antara siswa dan admin melalui fitur live chat, di mana setiap pesan tercatat pengirimnya (student atau admin) beserta status sudah dibaca atau belum.
+        </p>
+    </div>
+
+    <!-- ====== TABEL RELASI ANTAR CLASS ====== -->
+    <h2>Tabel 2. Relasi Antar Class</h2>
+    <table>
+        <thead>
+            <tr>
+                <th width="5%">No</th>
+                <th width="20%">Class Asal</th>
+                <th width="20%">Class Tujuan</th>
+                <th width="15%">Multiplicity</th>
+                <th width="15%">Tipe Relasi</th>
+                <th width="25%">Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>User</td>
+                <td>Student</td>
+                <td>1 &mdash; 1</td>
+                <td>One to One</td>
+                <td>Satu akun User hanya memiliki satu data Student. Relasi melalui <i>user_id</i> di tabel students.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>User</td>
+                <td>StudentPayment</td>
+                <td>1 &mdash; 0..*</td>
+                <td>One to Many</td>
+                <td>Satu Bendahara (User) dapat mencatat banyak pembayaran siswa. Relasi melalui kolom <i>recorded_by</i> di tabel student_payments.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Student</td>
+                <td>StudentPayment</td>
+                <td>1 &mdash; 0..*</td>
+                <td>One to Many</td>
+                <td>Satu siswa dapat memiliki banyak record pembayaran (infak, LK, seragam) yang diinput manual oleh Bendahara. Relasi melalui <i>student_id</i>.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Student</td>
+                <td>Payment</td>
+                <td>1 &mdash; 0..*</td>
+                <td>One to Many</td>
+                <td>Satu siswa dapat memiliki data rekap pembayaran. Relasi melalui <i>student_id</i> (unique) di tabel payments.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Student</td>
+                <td>Message</td>
+                <td>1 &mdash; 0..*</td>
+                <td>One to Many</td>
+                <td>Satu siswa dapat mengirim dan menerima banyak pesan dalam fitur chat dengan admin. Relasi melalui <i>student_id</i>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

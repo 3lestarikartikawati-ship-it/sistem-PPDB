@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisi Bab 4 - Tanpa Midtrans</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 800px;
+            color: #333;
+            padding: 0 20px;
+        }
+        h1, h2, h3, h4 {
+            color: #000;
+        }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .note {
+            background-color: #f9f9f9;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+        .note strong { color: #d35400; }
+        .revision-note {
+            color: #c0392b;
+            font-weight: bold;
+            font-style: italic;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        hr { margin: 40px 0; border: 0; border-top: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <h1>BAB IV - HASIL DAN PEMBAHASAN<br><small>(Revisi Tanpa Midtrans)</small></h1>
+
+    <div class="note">
+        <strong>Catatan untuk Penulis:</strong><br>
+        Berikut adalah teks revisi Bab 4 yang telah disesuaikan karena penghapusan sistem Midtrans. Anda dapat menyalin (<em>copy-paste</em>) teks ini ke dalam dokumen Microsoft Word skripsi/laporan Anda.<br><br>
+        <strong>PERHATIAN UNTUK GAMBAR/DIAGRAM:</strong><br>
+        Saya telah menyertakan instruksi dengan teks berwarna merah seperti <span class="revision-note">[REVISI GAMBAR]</span> di bawah judul setiap gambar. Anda harus mengedit gambar tersebut secara manual di aplikasi diagram yang Anda gunakan, lalu menempelkannya kembali ke laporan Anda.
+    </div>
+
+    <hr>
+
+    <h2>4.1. Analisis Sistem</h2>
+    <p>Pada tahapan awal pengembangan sistem, dilakukan proses analisis kebutuhan untuk memahami secara menyeluruh fitur-fitur yang harus disediakan oleh Sistem Informasi Penerimaan Peserta Didik Baru (PPDB) Berbasis Web. Analisis dilakukan melalui metode observasi dan wawancara dengan pihak panitia penerimaan, yaitu pihak administrasi sekolah dan bendahara. Kebutuhan ini dibagi menjadi kebutuhan fungsional dan non-fungsional.</p>
+
+    <h3>4.1.1 Kebutuhan Fungsional</h3>
+    <p>Kebutuhan fungsional mendeskripsikan fungsi atau layanan spesifik yang harus disediakan oleh sistem untuk setiap aktor yang terlibat.</p>
+
+    <p><strong>a. Untuk Calon Siswa (Pendaftar):</strong></p>
+    <ol>
+        <li>Sistem harus memungkinkan calon siswa melakukan registrasi akun dan mengakses <em>dashboard</em> melalui proses login yang divalidasi (termasuk via Google OAuth).</li>
+        <li>Sistem harus memfasilitasi calon siswa untuk memilih jalur pendaftaran (Reguler, Prestasi, Afirmasi) dan mengisi formulir biodata secara dinamis.</li>
+        <li>Sistem harus memungkinkan calon siswa mengunggah dokumen persyaratan sesuai dengan jalur pendaftaran yang dipilih.</li>
+        <li>Sistem harus menyediakan portal pembayaran pendaftaran yang memungkinkan siswa mengunggah bukti transfer bank secara manual.</li>
+        <li>Sistem harus menampilkan pengumuman status kelulusan, penempatan kelas (<em>plotting</em>), dan memungkinkan pencetakan bukti pendaftaran.</li>
+    </ol>
+
+    <p><strong>b. Untuk Admin:</strong></p>
+    <ol>
+        <li>Admin harus memiliki akses ke <em>dashboard</em> khusus yang dilindungi oleh proses login.</li>
+        <li>Admin harus dapat mengelola pengaturan jalur pendaftaran, termasuk mengaktifkan/menonaktifkan jalur dan menentukan syarat dokumen wajib secara dinamis.</li>
+        <li>Admin harus dapat melakukan verifikasi data biodata dan dokumen persyaratan yang diunggah oleh pendaftar.</li>
+        <li>Admin harus dapat melakukan manajemen penempatan kelas (<em>plotting</em>) bagi siswa yang dinyatakan lolos seleksi dan mengekspor data kelas ke dalam format PDF.</li>
+        <li>Sistem harus memungkinkan admin mengelola data master pengguna dan mereset data pendaftar (<em>database cleaning</em>) untuk persiapan periode PPDB baru.</li>
+    </ol>
+
+    <p><strong>c. Untuk Bendahara:</strong></p>
+    <ol>
+        <li>Bendahara harus memiliki akses ke <em>dashboard</em> keuangan untuk memonitor lalu lintas transaksi pembayaran pendaftaran.</li>
+        <li>Sistem harus memungkinkan bendahara untuk memverifikasi pembayaran yang dilakukan secara manual (transfer bank) melalui unggahan bukti transfer pendaftar.</li>
+        <li>Bendahara harus dapat mencetak laporan keuangan rekapitulasi pembayaran PPDB.</li>
+    </ol>
+
+    <h3>4.1.2 Kebutuhan Non-Fungsional</h3>
+    <p>Kebutuhan non-fungsional mendefinisikan kriteria kualitas dan operasional dari sistem.</p>
+    <ol type="a">
+        <li><strong>Kemudahan Penggunaan (Usability):</strong> Antarmuka pengguna (UI) harus dirancang agar modern, intuitif, responsif, dan ramah pengguna, dengan efek visual yang halus sehingga mudah diakses melalui perangkat desktop maupun mobile oleh calon siswa.</li>
+        <li><strong>Performa (Performance):</strong> Sistem harus memiliki waktu respons yang cepat, terbebas dari masalah <em>loading</em> tak terbatas (<em>infinite loading</em>) pada proses verifikasi atau saat memuat data dalam jumlah besar.</li>
+        <li><strong>Keamanan (Security):</strong> Sistem harus menggunakan enkripsi kata sandi, autentikasi aman (termasuk penyimpanan token OAuth yang memadai), dan hak akses berbasis peran (<em>Role-Based Access Control</em>) untuk melindungi kerahasiaan data calon siswa.</li>
+        <li><strong>Skalabilitas (Scalability):</strong> Struktur basis data harus fleksibel untuk menampung rekam data transaksi pembayaran dan arsitektur harus sanggup menghadapi lonjakan akses pada masa puncak pendaftaran.</li>
+    </ol>
+
+    <hr>
+
+    <h2>4.2. Perancangan Sistem</h2>
+    <p>Pada tahap perancangan, dilakukan penyusunan arsitektur sistem yang mencakup desain antarmuka pengguna (UI), struktur basis data, serta alur proses pendaftaran PPDB. Perancangan ini bertujuan untuk membangun sistem yang efektif, efisien, dan sesuai dengan prosedur standar sekolah. Beberapa langkah yang dilakukan adalah sebagai berikut:</p>
+
+    <h3>4.2.1 Perancangan Antarmuka Pengguna (UI)</h3>
+    <p>Antarmuka pengguna dirancang untuk mengakomodasi kebutuhan Calon Siswa, Admin, dan Bendahara dengan pendekatan desain yang profesional dan responsif. Beberapa fitur antarmuka meliputi:</p>
+    <ol type="a">
+        <li><strong>Halaman Landing Page & Autentikasi:</strong> Portal informasi pendaftaran dan pintu masuk sistem yang dilengkapi dengan opsi login reguler maupun <em>Single Sign-On</em> (Google).</li>
+        <li><strong>Halaman Dashboard Calon Siswa:</strong> Menampilkan alur pendaftaran, status pembayaran, formulir pemilihan jalur (Reguler/Prestasi/Afirmasi), serta area unggah dokumen persyaratan yang spesifik per jalur.</li>
+        <li><strong>Halaman Dashboard Admin & Verifikasi:</strong> Menampilkan metrik analitik pendaftar, kontrol <em>toggle</em> jalur pendaftaran, antarmuka verifikasi berkas, dan fitur manajemen penempatan kelas (<em>plotting</em>).</li>
+        <li><strong>Halaman Dashboard Bendahara:</strong> Area khusus untuk pengecekan daftar tunggu konfirmasi pembayaran manual transfer bank dan rekapitulasi transaksi.</li>
+        <li><strong>Halaman Laporan dan Cetak PDF:</strong> Fitur untuk me-<em>render</em> laporan daftar siswa yang diterima per kelas ke dalam dokumen PDF resmi sebagai arsip sekolah.</li>
+    </ol>
+
+    <h3>4.2.2 Perancangan Basis Data</h3>
+    <p>Struktur basis data relasional dirancang menggunakan MySQL untuk menjamin integritas data operasional PPDB:</p>
+    <ol type="a">
+        <li><strong>Tabel Pengguna (Users / Roles):</strong> Menyimpan kredensial autentikasi (termasuk ekstensi <em>field token</em> Auth) dan membedakan hak akses (<em>role</em>) antara Admin, Bendahara, atau Siswa.</li>
+        <li><strong>Tabel Calon Siswa / Pendaftar (Students):</strong> Berisi data identitas lengkap, asal sekolah, dan status tahapan pendaftaran.</li>
+        <li><strong>Tabel Jalur & Persyaratan Pendaftaran (Registration Paths):</strong> Menyimpan konfigurasi dinamis mengenai jalur PPDB mana yang sedang aktif beserta dokumen wajib yang mengikat.</li>
+        <li><strong>Tabel Dokumen (Documents):</strong> Mengelola path direktori unggahan file persyaratan siswa dan status validasinya.</li>
+        <li><strong>Tabel Pembayaran (Payments):</strong> Mencatat transaksi pendaftaran, pilihan rekening transfer, unggahan berkas bukti transfer, dan status pelunasan.</li>
+        <li><strong>Tabel Kelas & Plotting (Classes):</strong> Menyimpan data rombongan belajar dan relasi pembagian kelas bagi siswa yang telah diterima.</li>
+    </ol>
+
+    <hr>
+
+    <h2>4.3. Tahapan Analisis</h2>
+    <p>Berdasarkan hasil analisis kebutuhan alur kerja operasional, berikut adalah spesifikasi kebutuhan interaksi spesifik dari sistem Informasi PPDB:</p>
+
+    <p><strong>a. Halaman / Kewenangan Calon Siswa:</strong></p>
+    <ol>
+        <li>Calon siswa dapat melakukan pendaftaran akun baru atau login secara instan menggunakan akun Google.</li>
+        <li>Calon siswa dapat memilih jalur pendaftaran (Reguler, Prestasi, Afirmasi) yang disediakan oleh sistem.</li>
+        <li>Calon siswa dapat melengkapi formulir biodata dan mengunggah dokumen persyaratan sesuai dengan jalur yang dipilihnya.</li>
+        <li>Calon siswa dapat menyelesaikan tagihan pembayaran pendaftaran dengan melihat instruksi rekening sekolah dan mengunggah bukti transfer.</li>
+        <li>Calon siswa dapat memantau status verifikasi dokumen (Diterima/Menunggu/Ditolak).</li>
+        <li>Calon siswa dapat melihat hasil <em>plotting</em> kelas setelah dinyatakan lulus.</li>
+        <li>Calon siswa dapat mencetak bukti pendaftaran resmi dari sistem.</li>
+    </ol>
+
+    <p><strong>b. Halaman / Kewenangan Admin:</strong></p>
+    <p><em>(Tidak ada perubahan, sama dengan PDF asli)</em></p>
+
+    <p><strong>c. Halaman / Kewenangan Bendahara:</strong></p>
+    <ol>
+        <li>Bendahara dapat melihat daftar pembayaran pendaftar yang menunggu konfirmasi.</li>
+        <li>Bendahara dapat melakukan verifikasi silang dan memperbarui status pembayaran secara manual bagi siswa yang telah mengunggah bukti transfer.</li>
+        <li>Bendahara dapat mengunduh laporan rekapitulasi penerimaan dana pendaftaran untuk keperluan pembukuan dan audit sekolah.</li>
+        <li>Bendahara dapat mengatur referensi dan rincian nominal pembayaran.</li>
+    </ol>
+
+    <hr>
+
+    <h2>4.4. Use Case Diagram</h2>
+
+    <h3>4.4.1 Use Case Diagram Pengunjung</h3>
+    <p><em>(Tidak ada perubahan)</em></p>
+
+    <h3>4.4.2 Use Case Diagram Calon Siswa (Pendaftar)</h3>
+    <p class="revision-note">[REVISI GAMBAR 4.2: Di dalam gambar Use Case Calon Siswa, HAPUS Use Case "Bayar via Midtrans". Sisakan Use Case "Melakukan Pembayaran / Daftar Ulang" dan "Cetak Kuitansi Bayar"]</p>
+    
+    <p><em>Tabel 4. 2 Deskripsi Use Case Calon Siswa</em></p>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Use Case</th>
+                <th>Deskripsi / Tujuan Singkat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Melakukan Registrasi Akun</td><td>Mendaftar akun baru ke dalam sistem PPDB menggunakan email aktif.</td></tr>
+            <tr><td>2</td><td>Melakukan Login</td><td>Masuk ke <em>dashboard</em> menggunakan otorisasi Calon Siswa.</td></tr>
+            <tr><td>3</td><td>Login via Google SSO</td><td>Masuk secara instan menggunakan otentikasi Google tanpa perlu mengetikkan kata sandi.</td></tr>
+            <tr><td>4</td><td>Memilih Jalur Pendaftaran</td><td>Menentukan jalur pendaftaran yang sesuai (misal: Reguler, Prestasi, atau Afirmasi).</td></tr>
+            <tr><td>5</td><td>Mengisi Formulir Biodata</td><td>Melengkapi data diri secara detail, riwayat sekolah asal, serta kontak orang tua/wali.</td></tr>
+            <tr><td>6</td><td>Mengunggah Dokumen Persyaratan</td><td>Mengunggah berkas wajib (KK, Ijazah, dll) yang disesuaikan secara dinamis berdasar jalur yang dipilih.</td></tr>
+            <tr><td>7</td><td>Melakukan Pembayaran</td><td>Melihat rincian tagihan biaya pendaftaran dan mengunggah bukti transfer bank secara manual.</td></tr>
+            <tr><td>8</td><td>Melihat Status Verifikasi & Kelulusan</td><td>Memeriksa progres kelayakan dokumen dan informasi akhir kelulusan (serta hasil plotting kelas).</td></tr>
+            <tr><td>9</td><td>Mencetak Bukti Pendaftaran</td><td>Men-<em>generate</em> dan mengunduh kartu bukti pendaftaran format PDF untuk disimpan.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>4.4.3 Use Case Diagram Admin</h3>
+    <p><em>(Tidak ada perubahan)</em></p>
+
+    <h3>4.4.4 Use Case Diagram Bendahara</h3>
+    <p class="revision-note">[REVISI GAMBAR 4.4: Di dalam gambar Use Case Bendahara, HAPUS Use Case "Memantau Transaksi Midtrans". (Ubah teks jika sebelumnya ada tulisan Midtrans di Use Case verifikasi pembayaran)]</p>
+    
+    <p><em>Tabel 4. 4 Deskripsi Use Case Bendahara</em></p>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Use Case</th>
+                <th>Deskripsi / Tujuan Singkat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Melakukan Login</td><td>Masuk ke portal keuangan sistem menggunakan kredensial Bendahara.</td></tr>
+            <tr><td>2</td><td>Melihat Dashboard Keuangan</td><td>Melihat ringkasan total dana yang masuk (<em>revenue</em>) dan metrik keberhasilan transaksi.</td></tr>
+            <tr><td>3</td><td>Memverifikasi Pembayaran Manual</td><td>Memeriksa file unggahan bukti transfer siswa dan mengubah status tagihan menjadi Lunas secara manual jika sesuai.</td></tr>
+            <tr><td>4</td><td>Mengelola Rincian Biaya Item</td><td>Menambahkan atau mengubah komponen biaya daftar ulang.</td></tr>
+            <tr><td>5</td><td>Mencetak Laporan Keuangan</td><td>Mengekspor laporan rekapitulasi penerimaan uang pendaftaran untuk kepentingan audit/pembukuan.</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>4.5. Activity Diagram</h2>
+
+    <h3>4.5.1 & 4.5.2 Activity Diagram Calon Siswa</h3>
+    <p><em>(Subbab a, b, c, d tidak ada perubahan)</em></p>
+
+    <p><strong>e. Activity Diagram Calon Siswa Pembayaran</strong></p>
+    <p class="revision-note">[REVISI GAMBAR 4.12: Ubah alur diagram menjadi: Pilih Menu Pembayaran -> Tampilkan Tagihan & Opsi Rekening Sekolah -> Upload Bukti Transfer Bank -> Update Status Pendaftaran Menjadi Menunggu Verifikasi]</p>
+    
+    <p><strong>Deskripsi Singkat (Ganti Paragraf 4.5.2 bagian akhir):</strong><br>
+    Setelah siswa mengunggah dokumen persyaratan dasar, mereka dapat melihat rincian tagihan keuangan. Siswa diharuskan melakukan transfer secara manual ke rekening sekolah yang tertera, lalu mengunggah bukti transfer. Sistem akan menyimpan bukti tersebut dan memperbarui status menjadi menunggu verifikasi bendahara. Setelah status pembayaran divalidasi lunas oleh bendahara, siswa baru dapat mencetak bukti pendaftaran resmi.</p>
+
+    <h3>4.5.3 Activity Diagram Admin</h3>
+    <p><em>(Tidak ada perubahan)</em></p>
+
+    <h3>4.5.4 Activity Diagram Bendahara</h3>
+    <p>Aktor Bendahara menjalankan alur aktivitas yang berpusat pada penyelesaian transaksi keuangan, diawali dari proses masuk ke dasbor khusus bendahara. Setelah login divalidasi, bendahara membuka modul daftar tunggu pembayaran dan melakukan aktivitas pengecekan terhadap bukti transfer yang telah diunggah oleh calon siswa. Pada tahap ini terdapat percabangan evaluasi: jika bukti pembayaran sah dan nominal sesuai, bendahara menyetujui transaksi dan sistem mengubah status menjadi lunas, namun sebaliknya, sistem akan memperbarui status menjadi tertolak jika bukti tidak valid. Bendahara juga mengelola konfigurasi rincian biaya pendaftaran dan mengekspor rekapitulasi data keuangan.</p>
+
+    <p><em>(Subbab a dan b tidak ada perubahan)</em></p>
+
+    <p><strong>c. Activity Diagram Bendahara Memantau Midtrans</strong></p>
+    <p class="revision-note">(HAPUS SUBBAB INI DAN GAMBAR 4.20 SECARA KESELURUHAN KARENA MIDTRANS DIHAPUS)</p>
+    
+    <p><em>(Subbab d menjadi Subbab c: Cetak Laporan Keuangan)</em></p>
+
+    <hr>
+
+    <h2>4.6. Sequence Diagram</h2>
+
+    <h3>4.6.2 Calon Siswa</h3>
+    <p><em>(Subbab a, b, c, d tidak ada perubahan)</em></p>
+
+    <p><strong>e. Sequence Diagram Calon Siswa Pembayaran</strong></p>
+    <p class="revision-note">[REVISI GAMBAR 4.29: Ganti flow Midtrans. Alurnya: Siswa -> Sistem: Akses halaman pembayaran. Sistem -> Database: Ambil tagihan. Sistem -> Siswa: Tampilkan tagihan dan rekening tujuan. Siswa -> Sistem: Submit Form Upload Bukti Transfer. Sistem -> Database: Update path bukti_transfer dan status=Pending. Sistem -> Siswa: Tampilkan notifikasi Menunggu Verifikasi.]</p>
+
+    <h3>4.6.4 Bendahara</h3>
+    <p><em>(Subbab a, b, c, d tidak ada perubahan khusus selain memastikan di gambar tidak ada tulisan sinkronisasi Midtrans)</em></p>
+
+    <hr>
+
+    <h2>4.8 & 4.9 ERD dan Perancangan Basis Data</h2>
+    <p><em>(Struktur gambar ERD dan Tabel Relasi secara umum tidak perlu diubah karena tabel <code>payments</code> masih relevan untuk menampung metode pembayaran manual dan <code>bukti_transfer</code>)</em></p>
+
+    <p><strong>Pada bagian Tabel 4.8 (Struktur Tabel Pembayaran):</strong></p>
+    <ul>
+        <li>Penjelasan kolom <code>metode_pembayaran</code> disesuaikan menjadi: "Nama bank transfer yang dipilih pendaftar (contoh: BRI, BSI, dll)."</li>
+        <li>Kolom <code>bukti_transfer</code> disesuaikan menjadi: "Path direktori ke file unggahan bukti setoran/transfer siswa."</li>
+    </ul>
+
+    <hr>
+
+    <h2>4.10. Perancangan UI/UX</h2>
+
+    <h3>4.10.1 Perancangan UI/UX Calon Siswa</h3>
+    <p><strong>e. Tampilan Halaman Pembayaran dan Daftar Ulang</strong></p>
+    <p class="revision-note">[REVISI GAMBAR 4.46: Sesuaikan tampilan (atau gunakan tangkapan layar UI terbaru) yang tidak menampilkan tombol Midtrans Snap, melainkan form upload bukti transfer/tombol Konfirmasi Manual]</p>
+    
+    <p><strong>Teks Deskripsi:</strong><br>
+    Tampilan di atas merupakan perancangan antarmuka untuk Halaman Pembayaran dan Daftar Ulang. Bagian halaman menampilkan rincian total nominal tagihan pendaftaran. Antarmuka ini menyediakan informasi rekening bank resmi milik sekolah yang dituju. Di bagian bawah, disediakan form atau area bagi siswa untuk mengunggah berkas foto bukti setoran atau transfer bank. Setelah diunggah, sistem akan menandai transaksi sebagai Menunggu Verifikasi.</p>
+
+    <p><strong>f. Tampilan Pop-up Modal Gateway Pembayaran (Instruksi Virtual Account Midtrans)</strong></p>
+    <p class="revision-note">(HAPUS SUBBAB INI DAN GAMBAR 4.47 KARENA TIDAK ADA LAGI POP-UP MIDTRANS)</p>
+    <p><em>(Subbab g menjadi Subbab f, dan h menjadi g)</em></p>
+
+    <h3>4.10.3 Perancangan UI/UX Bendahara</h3>
+    <p><em>(Subbab a, b, c, d, e tidak ada perubahan signifikan, cukup pastikan jika ada tangkapan layar yang bertuliskan "Midtrans" diganti dengan tangkapan layar UI terbaru)</em></p>
+
+    <hr>
+
+    <h2>4.12. Pengujian Sistem (Black Box Testing)</h2>
+    <p>Pengujian sistem ini menggunakan metode <em>Black Box Testing</em>. Pengujian ini berfokus pada pengujian persyaratan fungsionalitas sistem informasi PPDB SMP Muhammadiyah Kaliwiro tanpa perlu memperhatikan struktur kode internal program. Pengujian dilakukan untuk memastikan bahwa seluruh fungsi input, proses bisnis, manajemen data pendaftar, dan pelaporan berjalan secara valid sesuai dengan spesifikasi.</p>
+
+    <p><strong>(Pada daftar aktor pengguna utama di sistem PPDB, perbaiki poin 2 dan 4):</strong></p>
+    <ol>
+        <li value="2"><strong>Calon Siswa:</strong> Melakukan registrasi, login, pengisian formulir biodata, upload berkas, live chat panitia, <strong>unggah bukti pembayaran daftar ulang</strong>, dan cetak dokumen.</li>
+        <li value="4"><strong>Bendahara:</strong> Memantau dashboard keuangan, <strong>verifikasi unggahan pembayaran daftar ulang</strong>, mengelola rincian biaya per jalur, konfigurasi rekening sekolah, dan ekspor laporan keuangan.</li>
+    </ol>
+
+    <h3>4.12.3 Pengujian Modul Calon Siswa (Pendaftaran, Dokumen, dan Pembayaran)</h3>
+    <p><em>(Gabungkan pengujian pembayaran ke bagian siswa)</em></p>
+    <p class="revision-note">[REVISI TABEL 4.16: Hapus Tabel 4.16 Pengujian Midtrans seutuhnya, lalu tambahkan skenario pembayaran manual ini ke dalam Tabel 4.15 pengujian Calon Siswa]</p>
+    
+    <p><em>Tambahan Skenario di Tabel 4.15 (Pengujian Siswa):</em></p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Test</th>
+                <th>Fungsi / Fitur</th>
+                <th>Skenario Pengujian</th>
+                <th>Input Data</th>
+                <th>Hasil Yang Diharapkan</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TC-SISWA-08</td>
+                <td>Upload Bukti Pembayaran</td>
+                <td>Calon siswa mengunggah foto bukti transfer bank pada halaman tagihan.</td>
+                <td>File <code>.jpg</code> bukti setoran</td>
+                <td>Sistem menerima unggahan, memperbarui status tagihan menjadi "Menunggu Verifikasi", dan menampilkannya di riwayat.</td>
+                <td>Valid</td>
+            </tr>
+            <tr>
+                <td>TC-SISWA-09</td>
+                <td>Cetak Kuitansi Pembayaran</td>
+                <td>Siswa menekan tombol cetak kuitansi pada tagihan yang sudah disetujui (Lunas) oleh Bendahara.</td>
+                <td>Klik tombol Cetak Kuitansi</td>
+                <td>Browser mengunduh file PDF kuitansi pendaftaran resmi.</td>
+                <td>Valid</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>4.12.6 Pengujian Modul Bendahara (Keuangan & Rincian Biaya)</h3>
+    <p class="revision-note">[REVISI TABEL 4.18: Hapus skenario pengecekan Webhook atau Simulasi Midtrans jika sebelumnya ada di draft. Gunakan skenario verifikasi manual murni seperti di bawah ini]</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID Test</th>
+                <th>Fungsi / Fitur</th>
+                <th>Skenario Pengujian</th>
+                <th>Input Data</th>
+                <th>Hasil Yang Diharapkan</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TC-BND-01</td>
+                <td>Dashboard Keuangan</td>
+                <td>Mengakses dashboard Bendahara.</td>
+                <td>Login Bendahara</td>
+                <td>Menampilkan ringkasan total uang masuk, persentase pelunasan pembayaran.</td>
+                <td>Valid</td>
+            </tr>
+            <tr>
+                <td>TC-BND-02</td>
+                <td>Verifikasi Pembayaran Manual</td>
+                <td>Bendahara membuka riwayat transaksi siswa, meninjau foto bukti transfer, dan menyetujuinya.</td>
+                <td>Klik "Setujui" pada transaksi ID tertentu</td>
+                <td>Status transaksi siswa berubah menjadi "Lunas", nominal tagihan masuk ke rekap pendapatan.</td>
+                <td>Valid</td>
+            </tr>
+            <tr>
+                <td>TC-BND-03</td>
+                <td>Penolakan Bukti Transfer</td>
+                <td>Bendahara menolak unggahan bukti karena foto tidak jelas atau nominal tidak sesuai.</td>
+                <td>Klik "Tolak", masukkan catatan</td>
+                <td>Status transaksi berubah menjadi "Ditolak", siswa bisa mengunggah ulang.</td>
+                <td>Valid</td>
+            </tr>
+            <tr>
+                <td>TC-BND-04</td>
+                <td>Ekspor Laporan</td>
+                <td>Mengunduh rekapitulasi data pendaftar yang sudah lunas.</td>
+                <td>Klik "Ekspor PDF"</td>
+                <td>File PDF terunduh berisi data siswa lunas dan total pendapatan.</td>
+                <td>Valid</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <p><strong>(Teks Lanjutan untuk Kesimpulan Pengujian di halaman akhir Bab 4 tetap dipertahankan, hapus kalimat nomor 3 yang menyebutkan Integrasi Midtrans Webhook.)</strong></p>
+    
+    <div class="note">
+        Kesimpulan Nomor 3 diubah menjadi:<br><br>
+        3. Alur transaksi pembayaran daftar ulang manual berjalan lancar, dimulai dari unggahan bukti pendaftar hingga verifikasi status dan pencetakan laporan oleh modul bendahara secara <em>real-time</em>.
+    </div>
+
+    <p style="text-align:center; color:#999;"><em>(Selesai)</em></p>
+
+</body>
+</html>

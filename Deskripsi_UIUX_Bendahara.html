@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deskripsi Perancangan UI/UX Bendahara PPDB</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .document {
+            background-color: white;
+            width: 21cm; /* Lebar kertas A4 */
+            min-height: 29.7cm; /* Tinggi minimal kertas A4 */
+            padding: 2.54cm; /* Margin standar (1 inci) */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            color: black;
+        }
+        p {
+            text-align: justify;
+            text-indent: 1.27cm; /* Indentasi paragraf seperti di dokumen formal */
+            margin-top: 0;
+            margin-bottom: 12pt;
+        }
+        .heading {
+            font-weight: normal; 
+            margin-bottom: 12pt;
+            margin-top: 12pt;
+            padding-left: 0.5cm; /* Menjorok sedikit untuk penomoran abjad */
+        }
+        .image-placeholder {
+            width: 80%;
+            height: 250px;
+            background-color: #fafafa;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 12pt auto; /* Tengah-tengah dokumen */
+            color: #999;
+            font-style: italic;
+            font-size: 10pt;
+        }
+        
+        /* Gaya khusus cetak */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .document {
+                box-shadow: none;
+                width: 100%;
+                padding: 0; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        
+        <div class="heading">a. Tampilan Halaman Login Bendahara</div>
+        <div class="image-placeholder">[ Sisipkan Gambar Halaman Login Bendahara Di Sini ]</div>
+        <p>Tampilan di atas merupakan perancangan antarmuka untuk Halaman Login khusus peran Bendahara. Halaman ini berfungsi sebagai lapisan keamanan untuk mengakses modul keuangan sistem PPDB. Desain mempertahankan konsistensi dengan halaman login aktor lainnya, yaitu berpusat di tengah layar (center-aligned layout) dengan antarmuka yang bersih. Form input difokuskan pada kredensial email dan kata sandi, memastikan proses autentikasi yang langsung dan aman bagi pengelola keuangan.</p>
+
+        <div class="heading">b. Tampilan Dashboard Keuangan</div>
+        <div class="image-placeholder">[ Sisipkan Gambar Dashboard Keuangan Di Sini ]</div>
+        <p>Tampilan di atas merupakan perancangan antarmuka untuk Dashboard Keuangan utama. Halaman ini dirancang sebagai pusat ringkasan bagi bendahara. Pada bagian atas, terdapat empat kartu metrik utama (summary cards) yang menyoroti total dana masuk, jumlah pembayaran yang menunggu verifikasi, siswa yang lunas daftar ulang, dan yang belum membayar. Di bagian bawah, dasbor dilengkapi dengan visualisasi data berupa grafik tren dana masuk dan diagram lingkaran (pie chart) metode pembayaran, memberikan wawasan (insight) finansial secara seketika dan komprehensif.</p>
+
+        <div class="heading">c. Tampilan Verifikasi Pembayaran Daftar Ulang</div>
+        <div class="image-placeholder">[ Sisipkan Gambar Halaman Verifikasi Pembayaran Di Sini ]</div>
+        <p>Tampilan di atas merupakan perancangan antarmuka untuk Halaman Verifikasi Pembayaran Daftar Ulang. Antarmuka operasional ini sangat vital bagi bendahara untuk meninjau dan mengesahkan bukti transfer. Selain mempertahankan kartu ringkasan keuangan, halaman ini menyediakan tabel data pendaftar yang dilengkapi dengan fitur pencarian, filter status, dan navigasi tab (Semua Pendaftar, Jalur Reguler, Prestasi). Tombol ekspor data (PDF/CSV) disediakan untuk keperluan pelaporan, sementara tombol "Detail" pada tabel digunakan untuk melakukan verifikasi mendalam atas setiap transaksi.</p>
+
+        <div class="heading">d. Tampilan Pengaturan Konfigurasi Keuangan</div>
+        <div class="image-placeholder">[ Sisipkan Gambar Halaman Konfigurasi Keuangan Di Sini ]</div>
+        <p>Tampilan di atas merupakan perancangan antarmuka untuk Halaman Pengaturan Konfigurasi Keuangan sekolah. Pada modul ini, bendahara diberikan akses untuk menetapkan dan mengubah detail rekening bank penerima resmi atau informasi QRIS sekolah. Desain formulir dibuat lugas dengan kolom nama bank, nomor rekening, dan atas nama, memastikan bahwa setiap perubahan informasi rekening dapat langsung tersinkronisasi dan tampil di halaman instruksi pembayaran sisi calon pendaftar secara otomatis.</p>
+
+        <div class="heading">e. Tampilan Pengaturan Rincian Biaya</div>
+        <div class="image-placeholder">[ Sisipkan Gambar Halaman Kelola Rincian Biaya Di Sini ]</div>
+        <p>Tampilan di atas merupakan perancangan antarmuka untuk Halaman Kelola Rincian Biaya daftar ulang. Antarmuka ini menampilkan papan informasi gelap di bagian atas yang merangkum total biaya berdasarkan jalur pendaftaran (Reguler, Prestasi, Afirmasi). Pada bagian bawah, layar dibagi menjadi dua: sisi kiri untuk form penambahan item rincian baru (misal: SPP, Seragam), dan sisi kanan berupa daftar rincian biaya yang sedang aktif. Desain ini mengadopsi prinsip kejelasan visual, dilengkapi dengan label indikator (badge) pada setiap item untuk menunjukkan peruntukan jalurnya.</p>
+
+    </div>
+</body>
+</html>

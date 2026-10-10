@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjelasan Activity Diagram - Sistem PPDB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        .intro-text {
+            text-align: justify;
+            text-indent: 40px;
+            margin-bottom: 30px;
+        }
+        .actor-box {
+            background-color: #fcfcfc;
+            border: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .actor-box p {
+            text-align: justify;
+            text-indent: 40px;
+            margin: 0;
+        }
+        .btn-print {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-print:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .container { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="window.print()" class="btn-print no-print">Cetak Penjelasan</button>
+
+    <div class="container">
+        <h1>Penjelasan Activity Diagram Sistem PPDB</h1>
+        
+        <p class="intro-text">Activity diagram menggambarkan alur kerja (<i>workflow</i>) atau aktivitas operasional sistem secara dinamis, menunjukkan perpindahan dari satu aktivitas ke aktivitas lainnya, serta mencakup percabangan (kondisi), perulangan, dan eksekusi paralel. Sistem Informasi Penerimaan Peserta Didik Baru (PPDB) membagi aktivitas tersebut berdasarkan empat peran utama, yaitu: Pengunjung (Publik), Calon Siswa, Admin, dan Bendahara. Setiap aktor memiliki serangkaian tahapan tindakan yang terstruktur untuk mencapai tujuan spesifik di dalam sistem. Activity diagram sistem untuk masing-masing pengguna dijelaskan sebagai berikut.</p>
+
+        <h2>1. Pengguna: Publik / Pengunjung</h2>
+        <div class="actor-box">
+            <p>Aktor Publik memiliki alur aktivitas yang bersifat eksploratif tanpa memerlukan proses autentikasi akun. Aktivitas dimulai ketika pengunjung membuka situs web PPDB, kemudian sistem akan mengarahkan mereka ke halaman utama. Dari halaman tersebut, pengunjung dapat memilih rute aktivitas untuk melihat informasi panduan pendaftaran, menelusuri detail jalur penerimaan yang tersedia, atau mengakses halaman pengumuman kelulusan. Setiap pilihan aktivitas tersebut akan memicu sistem untuk mengambil data dari basis data dan menampilkannya kepada pengguna, setelah itu pengunjung dapat mengakhiri sesinya atau kembali ke halaman utama untuk mengeksplorasi informasi lainnya.</p>
+        </div>
+
+        <h2>2. Pengguna: Calon Siswa</h2>
+        <div class="actor-box">
+            <p>Calon Siswa mengikuti alur aktivitas sekuensial yang melibatkan beberapa titik percabangan kondisi, dimulai dengan pembuatan akun di halaman registrasi. Setelah berhasil melakukan registrasi dan melewati proses validasi login, siswa diwajibkan untuk mengisi formulir biodata diri; pada tahap ini, jika data yang dimasukkan tidak valid, sistem akan menolak dan meminta siswa untuk melakukan perbaikan. Alur kerja kemudian dilanjutkan dengan aktivitas mengunggah dokumen persyaratan dasar, melihat rincian tagihan keuangan, dan melakukan proses pembayaran. Setelah siswa menyelesaikan pembayaran dan keseluruhan data (baik profil maupun keuangan) telah diverifikasi secara penuh oleh pihak sekolah, aktivitas terakhir yang dapat diakses oleh siswa adalah mencetak bukti pendaftaran resmi sebagai tanda penyelesaian tahapan PPDB.</p>
+        </div>
+
+        <h2>3. Pengguna: Admin</h2>
+        <div class="actor-box">
+            <p>Aktor Admin memiliki alur aktivitas yang berfokus pada manajerial dan pengambilan keputusan (validasi), yang diawali dengan login ke dalam panel administrasi. Aktivitas intinya adalah melakukan peninjauan terhadap data pendaftar yang masuk; admin mengevaluasi kelengkapan biodata serta validitas dokumen, lalu berhadapan dengan percabangan tindakan untuk menerima, menolak, atau meminta pendaftar melakukan revisi dokumen. Di luar alur verifikasi utama, admin memiliki cabang aktivitas independen untuk mengelola publikasi konten informasi, serta mengubah status buka/tutup jalur pendaftaran pada sistem. Setelah rangkaian verifikasi pendaftaran dan penerimaan selesai, admin mengeksekusi aktivitas akhir berupa <i>plotting</i> untuk mendistribusikan siswa-siswa yang telah lulus ke dalam ruang kelas yang tersedia.</p>
+        </div>
+
+        <h2>4. Pengguna: Bendahara</h2>
+        <div class="actor-box">
+            <p>Aktor Bendahara menjalankan alur aktivitas yang berpusat pada penyelesaian transaksi keuangan, diawali dari proses masuk ke dasbor khusus bendahara. Setelah login divalidasi, bendahara membuka modul daftar tunggu pembayaran dan melakukan aktivitas pengecekan terhadap bukti transfer yang telah diunggah oleh calon siswa. Pada tahap ini terdapat percabangan evaluasi: jika bukti pembayaran sah dan nominal sesuai, bendahara menyetujui transaksi dan sistem mengubah status menjadi lunas, namun sebaliknya, sistem akan memperbarui status menjadi tertolak jika bukti tidak valid. Selain alur validasi tersebut, bendahara juga dapat menjalankan aktivitas pengelolaan nominal rincian tarif biaya per jalur pendaftaran, serta melakukan penarikan rekapitulasi data keuangan untuk dicetak atau diunduh sebelum mengakhiri aktivitas kerjanya di sistem.</p>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Diagram Calon Siswa</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif; text-align: center; margin-top: 50px; background-color: #ffffff; }
+        .diagram-container { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Activity Diagram: Calon Siswa (Dari Login s/d Selesai Pendaftaran)</h2>
+    <div class="diagram-container">
+        <svg width="800" height="980" viewBox="0 0 800 980" xmlns="http://www.w3.org/2000/svg" style="font-family: Arial, sans-serif;">
+            <rect x="0" y="0" width="800" height="980" fill="none" stroke="black" stroke-width="2"/>
+            <line x1="0" y1="60" x2="800" y2="60" stroke="black" stroke-width="2"/>
+            <line x1="400" y1="0" x2="400" y2="980" stroke="black" stroke-width="2"/>
+            
+            <text x="200" y="38" font-size="18" font-weight="bold" text-anchor="middle">Calon Siswa</text>
+            <text x="600" y="38" font-size="18" font-weight="bold" text-anchor="middle">Sistem PPDB</text>
+            
+            <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="black" />
+                </marker>
+            </defs>
+
+            <!-- Nodes -->
+            <circle cx="200" cy="100" r="16" fill="black"/>
+            
+            <rect x="50" y="150" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="175" font-size="14" text-anchor="middle">Mengisi Form Registrasi &amp; Pendaftaran</text>
+            
+            <rect x="450" y="210" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="235" font-size="14" text-anchor="middle">Akun Berhasil Dibuat</text>
+
+            <rect x="50" y="270" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="295" font-size="14" text-anchor="middle">Login Menggunakan Akun Siswa</text>
+
+            <polygon points="600,330 660,360 600,390 540,360" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="365" font-size="14" text-anchor="middle">Login Valid?</text>
+            <text x="590" y="405" font-size="12">Ya</text>
+            <text x="670" y="355" font-size="12">Tidak</text>
+
+            <rect x="50" y="430" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="455" font-size="14" text-anchor="middle">Pilih Jalur &amp; Isi Biodata</text>
+
+            <rect x="50" y="510" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="535" font-size="14" text-anchor="middle">Mengunggah Dokumen Persyaratan</text>
+
+            <polygon points="600,570 660,600 600,630 540,600" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="605" font-size="14" text-anchor="middle">Dokumen Lengkap?</text>
+            <text x="590" y="645" font-size="12">Ya</text>
+            <text x="670" y="595" font-size="12">Tidak</text>
+
+            <rect x="50" y="670" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="200" y="695" font-size="14" text-anchor="middle">Melakukan Pembayaran Pendaftaran</text>
+
+            <polygon points="600,730 660,760 600,790 540,760" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="765" font-size="14" text-anchor="middle">Status Lunas?</text>
+            <text x="590" y="805" font-size="12">Ya</text>
+            <text x="670" y="755" font-size="12">Tidak</text>
+
+            <rect x="450" y="830" width="300" height="40" rx="20" fill="white" stroke="black" stroke-width="1.5"/>
+            <text x="600" y="855" font-size="14" text-anchor="middle">Simpan Data Pendaftaran Akhir</text>
+
+            <circle cx="600" cy="920" r="14" fill="white" stroke="black" stroke-width="2"/>
+            <circle cx="600" cy="920" r="8" fill="black"/>
+
+            <!-- Arrows -->
+            <line x1="200" y1="116" x2="200" y2="150" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 190 L 200 230 L 450 230" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 600 250 L 600 290 L 350 290" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 310 L 200 360 L 540 360" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 660 360 L 750 360 L 750 290 L 350 290" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 600 390 L 600 450 L 350 450" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="200" y1="470" x2="200" y2="510" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 550 L 200 600 L 540 600" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 660 600 L 750 600 L 750 530 L 350 530" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 600 630 L 600 690 L 350 690" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 200 710 L 200 760 L 540 760" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 660 760 L 750 760 L 750 690 L 350 690" fill="none" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="600" y1="790" x2="600" y2="830" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="600" y1="870" x2="600" y2="906" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/>
+        </svg>
+    </div>
+</body>
+</html>

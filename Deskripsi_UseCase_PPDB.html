@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deskripsi Use Case Sistem PPDB (Format Word)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.5;
+            color: #000000;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            font-size: 14pt;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            text-align: center;
+            font-size: 12pt;
+            margin-bottom: 30px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 12pt;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        p.actor-desc {
+            font-size: 12pt;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 12pt;
+        }
+        th {
+            background-color: #ffffff;
+            font-weight: bold;
+        }
+        .tag {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deskripsi Use Case Sistem</h1>
+        <p class="subtitle">Sistem Informasi Penerimaan Peserta Didik Baru (PPDB)</p>
+
+        <!-- AKTOR 1: CALON SISWA -->
+        <h2>1. Aktor Calon Siswa (Pendaftar)</h2>
+        <p class="actor-desc">Aktor Calon Siswa merupakan entitas pengguna utama yang berinteraksi dengan sistem untuk melakukan pendaftaran sekolah, melengkapi biodata, mengunggah dokumen, dan menyelesaikan proses pembayaran hingga tahap pengumuman.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center;">No</th>
+                    <th style="width: 35%; text-align: center;">Nama Use Case</th>
+                    <th style="width: 60%; text-align: center;">Deskripsi / Tujuan Singkat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Melakukan Registrasi Akun</td>
+                    <td>Mendaftar akun baru ke dalam sistem PPDB menggunakan email aktif.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Melakukan Login</td>
+                    <td>Masuk ke <em>dashboard</em> menggunakan otorisasi Calon Siswa.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>Login via Google SSO <br><span class="tag">&lt;&lt;extend&gt;&gt;</span></td>
+                    <td>Masuk secara instan menggunakan otentikasi Google tanpa perlu mengetikkan kata sandi.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4</td>
+                    <td>Memilih Jalur Pendaftaran</td>
+                    <td>Menentukan jalur pendaftaran yang sesuai (misal: Reguler, Prestasi, atau Afirmasi).</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5</td>
+                    <td>Mengisi Formulir Biodata</td>
+                    <td>Melengkapi data diri secara detail, riwayat sekolah asal, serta kontak orang tua/wali.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">6</td>
+                    <td>Mengunggah Dokumen Persyaratan</td>
+                    <td>Mengunggah berkas wajib (KK, Ijazah, dll) yang disesuaikan secara dinamis berdasar jalur yang dipilih.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">7</td>
+                    <td>Melakukan Pembayaran</td>
+                    <td>Menyelesaikan tagihan biaya pendaftaran setelah dokumen dinyatakan lengkap.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">8</td>
+                    <td>Pembayaran Otomatis Midtrans <br><span class="tag">&lt;&lt;extend&gt;&gt;</span></td>
+                    <td>Membayar secara otomatis menggunakan kanal <em>Payment Gateway</em> Midtrans.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">9</td>
+                    <td>Pembayaran Manual Transfer <br><span class="tag">&lt;&lt;extend&gt;&gt;</span></td>
+                    <td>Membayar tagihan secara manual melalui transfer bank konvensional (BSI, BRI, Jateng).</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">10</td>
+                    <td>Melihat Status Verifikasi & Kelulusan</td>
+                    <td>Memeriksa progres kelayakan dokumen dan informasi akhir kelulusan (serta hasil <em>plotting</em> kelas).</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">11</td>
+                    <td>Mencetak Bukti Pendaftaran</td>
+                    <td>Men-<em>generate</em> dan mengunduh kartu bukti pendaftaran format PDF untuk disimpan.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- AKTOR 2: ADMIN -->
+        <h2>2. Aktor Admin</h2>
+        <p class="actor-desc">Aktor Admin merupakan entitas administrator atau panitia pusat sekolah yang memegang kendali penuh operasional PPDB, mengelola jalur, memverifikasi dokumen calon siswa, serta mengeksekusi penempatan kelas.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center;">No</th>
+                    <th style="width: 35%; text-align: center;">Nama Use Case</th>
+                    <th style="width: 60%; text-align: center;">Deskripsi / Tujuan Singkat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Melakukan Login</td>
+                    <td>Masuk ke sistem <em>back-office</em> menggunakan kredensial Admin.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Melihat Dashboard Analitik</td>
+                    <td>Melihat ringkasan statistik harian, jumlah pendaftar per jalur, dan status berkas.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>Mengelola Jalur Pendaftaran</td>
+                    <td>Mengaktifkan (Buka) atau Menonaktifkan (Tutup) jalur pendaftaran PPDB tertentu secara dinamis.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4</td>
+                    <td>Mengelola Syarat Dokumen</td>
+                    <td>Menentukan daftar berkas yang diwajibkan khusus untuk setiap masing-masing jalur pendaftaran.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5</td>
+                    <td>Memverifikasi Dokumen Siswa</td>
+                    <td>Memeriksa keabsahan dokumen yang diunggah siswa dan memberi status (<em>Approve</em>/<em>Reject</em>).</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">6</td>
+                    <td>Manajemen Plotting Kelas</td>
+                    <td>Membagi dan mengelompokkan siswa yang dinyatakan Lulus ke dalam rombongan belajar (kelas).</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">7</td>
+                    <td>Mencetak Laporan Kelas <span class="tag">&lt;&lt;include&gt;&gt;</span></td>
+                    <td>Mengekspor daftar absensi atau roster per kelas dalam format dokumen (PDF) setelah <em>plotting</em> selesai.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">8</td>
+                    <td>Database Cleaning (Reset Data)</td>
+                    <td>Membersihkan data pendaftar dan riwayat transaksi untuk persiapan PPDB di tahun ajaran yang baru.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- AKTOR 3: BENDAHARA -->
+        <h2>3. Aktor Bendahara</h2>
+        <p class="actor-desc">Aktor Bendahara merupakan entitas yang berfokus pada rekonsiliasi dan verifikasi lalu lintas keuangan pendaftaran masuk, baik secara otomatis maupun manual.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center;">No</th>
+                    <th style="width: 35%; text-align: center;">Nama Use Case</th>
+                    <th style="width: 60%; text-align: center;">Deskripsi / Tujuan Singkat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Melakukan Login</td>
+                    <td>Masuk ke portal keuangan sistem menggunakan kredensial Bendahara.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Melihat Dashboard Keuangan</td>
+                    <td>Melihat ringkasan total dana yang masuk (<em>revenue</em>) dan metrik keberhasilan transaksi.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>Memantau Transaksi Midtrans</td>
+                    <td>Memeriksa riwayat tagihan pendaftaran yang sudah terbayar lunas secara otomatis via sistem.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4</td>
+                    <td>Memverifikasi Pembayaran Manual</td>
+                    <td>Memeriksa bukti transfer siswa dan mengubah status tagihan menjadi Lunas secara manual jika diperlukan.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5</td>
+                    <td>Mencetak Laporan Keuangan</td>
+                    <td>Mengekspor laporan rekapitulasi penerimaan uang pendaftaran untuk kepentingan audit/pembukuan.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- AKTOR 4: PUBLIK -->
+        <h2>4. Aktor Publik (Pengunjung)</h2>
+        <p class="actor-desc">Aktor Publik merupakan entitas pengunjung tamu (guest) yang tidak memiliki akun, mengakses sistem dari luar untuk menggali informasi awal PPDB.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center;">No</th>
+                    <th style="width: 35%; text-align: center;">Nama Use Case</th>
+                    <th style="width: 60%; text-align: center;">Deskripsi / Tujuan Singkat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Melihat Halaman Beranda</td>
+                    <td>Mengakses portal <em>landing page</em> utama sistem PPDB.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Melihat Informasi Pendaftaran</td>
+                    <td>Membaca jadwal pelaksanaan, alur, jalur yang tersedia, dan rincian biaya secara umum.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>Melihat Pengumuman Umum</td>
+                    <td>Melihat papan informasi atau FAQ terkait kendala pendaftaran.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
